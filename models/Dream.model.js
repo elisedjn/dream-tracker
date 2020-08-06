@@ -13,7 +13,11 @@ const dreamSchema = new Schema({
   categories: [{
     type: String,
     enum: ["Fantasctic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare",]
-  }]
+  }],
+  status: {
+    type: String,
+    enum: [public, private]
+  }
 });
 
 

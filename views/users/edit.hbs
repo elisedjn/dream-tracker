@@ -1,0 +1,29 @@
+<h3>Edit your dream</h3>
+
+<form method="POST" action="/dreams/{{result._id}}/edit">
+
+    <label for="registerAdream">Register a dream</label>
+    <input id="registerAdream" type="" name="registerAdream" placeholder="Record a dream">
+
+    <label for="nameYourDream">Name your dream</label>
+    <input id= "nameYourDream" type="text" name="title" placeholder="Give your dream a name">
+
+    <label for="categories">Categories</label>
+    <input id= "categories" type="" name="categories" placeholder="Select a category">
+    
+    <label for="description">Description (optional)</label>
+    <input id= "description" type="text" name="description" placeholder="">
+
+    <label for="date">Date</label>
+    <input id= "date" type="" name="date" placeholder="Enter date">
+
+    <label for="public">Public</label>
+    <input id= "public" type="" name="status" placeholder="">
+
+    <label for="private">Private</label>
+    <input id= "private" type="" name="status" placeholder="">
+
+     <button type="submit">Edit</button>
+ 
+        
+</form>

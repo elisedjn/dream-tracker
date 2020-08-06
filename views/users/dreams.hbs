@@ -1,0 +1,28 @@
+<h3>Your past dreams</h3>
+
+<form method="POST" action="/profile/dreams">
+
+    <label for="date">Date</label>
+    <input id="date" type="" name="date" placeholder="">
+
+    <label for="categories">Categories</label>
+    <input id= "categores" type="" name="categories" placeholder="Select a category">
+
+    <label for="public">Public</label>
+    <input id= "public" type="" name="public" placeholder="">
+
+    <label for="private">Private</label>
+    <input id= "private" type="" name="private" placeholder="">
+
+    <button type="submit">Search</button>
+         
+</form>
+
+
+<div>
+{{#each result}}
+  <ul>
+    <li><a href="/profile/dreams/{{this._id}}/edit">{{result.title}}</a></li>
+  </ul>
+{{/each}}
+</div>
