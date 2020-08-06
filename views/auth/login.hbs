@@ -1,0 +1,16 @@
+<form method="POST" action="/login">
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="Enter Email">
+
+    <label for="password">Password</label>
+    <input id= "password" type="password" name="password" placeholder="Enter password">
+
+    <button type="submit">Log In!</button>
+    <p>Not a member yet? <a href="/signup">Sign Up</a></p>
+        
+</form>
+
+{{#if errorMessage}}
+    <div>{{errorMessage}}</div>
+{{/if}}

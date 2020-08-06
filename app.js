@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+// require database configuration
+require('./configs/db.config');
+
 
 mongoose
   .connect('mongodb://localhost/dream-tracker', {useNewUrlParser: true})
@@ -45,14 +48,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
+// cookies and sessions
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'myDream',
+    cookie: {
+        maxAge: 60*60*24*1000 
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60*60*24 
+    })
+}));
+
+
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
-const index = require('./routes/index');
+const index = require('./routes/index.routes');
 app.use('/', index);
+
+const authRouter = require('./routes/auth.routes');
+app.use('/', authRouter);
 
 
 module.exports = app;
