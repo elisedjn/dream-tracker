@@ -34,6 +34,7 @@ Likes
 
 - GET /
   - renders the homepage
+
 - GET /auth/signup
   - renders the signup form
 - POST /auth/signup
@@ -42,6 +43,7 @@ Likes
     - username
     - email
     - password
+
 - GET /auth/login
   - renders the login form
 - POST /auth/login
@@ -49,9 +51,10 @@ Likes
   - body:
     - email
     - password
-- GET /profile/:id
+
+- GET /profile
   - renders the dashboard with the create form
-- POST /profile/:id
+- POST /profile
   - redirects to /profile/:id/dreams
   - body:
     - recording
@@ -60,18 +63,13 @@ Likes
     - description
     - date
  
-- GET /profile/:id/dreams
+- GET /profile/dreams
   - renders dreams.hbs with the list and the search and anchor tags 
-- POST /profile/:id/dreams (
-  - redirects to /profile/:id/dreams
-  - body:
-    - Date
-    - categories
-    - Status (public or private)
+  - queries for the search
 
-- GET /profile/:id/dreams/:dreamId/edit
+- GET /profile/dreams/:dreamId/edit
   - renders dream-edit.hbs with the edit form (same format as Dashboard)
-- POST /profile/:id/dreams/:dreamId/edit
+- POST /profile/dreams/:dreamId/edit
   - redirects to /profile/:id/dreams
   - body:
     - recording
@@ -81,20 +79,16 @@ Likes
     - date
     - Status (public or private)
 
-- GET /profile/:id/dreams/:dreamId (if the the user is looking at his own dream he will see edit and delete properties, else not)
+- GET /profile/dreams/:dreamId (if the the user is looking at his own dream he will see edit and delete properties, else not)
   - renders dream-details.hbs (simlilar format to Dashboard)
 
-- POST /profile/:id/dreams/:dreamId/delete
+- POST /profile/dreams/:dreamId/delete
   - redirects to /profile/:id/dreams
   - body: (empty)
 
 - GET /dreamflow
   - renders dreamflow.hbs with the list and the search and anchor tags 
-- POST /dreamflow (
-  - redirects to /dreamflow
-  - body:
-    - Date
-    - categories
+  - queries for the search
 
 - POST /auth/logout
   - body: (empty)
@@ -105,42 +99,47 @@ Likes
 ## Models
 
 - User: Schema {
-	name: {
-    type : string, 
-    required: true,
+	- name: {
+    - type : string, 
+    - required: true,
     },
-  email:  {
-   type: String,
-   required: true,
-   unique: true }
-  passwordHash: {
+  - email:  {
+    - type: String,
+    - required: true,
+    - unique: true }
+    - passwordHash: {
     type: String, 
     required: true
       },
-  { timestamps: true} 
+  - { timestamps: true},
+  
 }
 	
 - Dream: Schema {
-	title: {
-	   type: String,
-	   required: true
+	- title: {
+	   - type: String,
+	   - required: true
 	},
-	date: {
-	   type: Date,
-	   default: Date.now
+	- date: {
+	   - type: Date,
+	   - default: Date.now
      }
-	description : String,
-	categories : [{
-      type : String
-	    enum: [drama, action, romance, funny, fantastic, family, pets, fear, nightmare, adventure, childhood, XXX, food, job]
+	- description : String,
+	- categories : [{
+      - type : String
+	    - enum: [drama, action, romance, funny, fantastic, family, pets, fear, nightmare, adventure, childhood, XXX, food, job]
       }]
-	status : {
-	  type : String,
-	  enum : [public, private]
+	- status : {
+	  - type : String,
+	  - enum : [public, private]
     }
-	recording: {
+	- recording: {
 	  ??????????? MORE RESEARCH NEEDED
 	}
+  - owner: {
+        - type: mongoose.Schema.Types.ObjectId,
+        - ref: 'user'
+    }
 
 
 ## Links
