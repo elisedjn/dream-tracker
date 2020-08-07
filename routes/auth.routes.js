@@ -85,7 +85,7 @@ router.post('/record', (req, res) => {
       })
       .catch((err) => {
         console.log(err)
-        res.render("users/record.hbs", {failed : true})
+        res.render("users/record.hbs", {failed : true, loggedInUser: req.session.loggedInUser})
      })
 });
 

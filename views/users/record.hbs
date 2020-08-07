@@ -1,3 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="/record" class="nav-link">Record a dream</a>
+      </li>
+      <li class="nav-item">
+        <a href="/dreams" class="nav-link">Your dreams</a>
+      </li>
+      <li class="nav-item">
+        <a href="/dreamFlow" class="nav-link">Dream Flow</a>
+      </li>
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <h3>Hello {{loggedInUser.username}}</h3>
 
 <form method="POST" action="/record">
@@ -11,8 +33,8 @@
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" value="{{result.categories}}">Fantasctic</button>
-        <button class="dropdown-item" value="{{result.categories}}">Super Powers</button>
+        <button class="dropdown-item">Fantasctic</button>
+        <button class="dropdown-item">Super Powers</button>
         <button class="dropdown-item" value="{{result.categories}}">Action</button>
         <button class="dropdown-item" value="{{result.categories}}">Adventure</button>
         <button class="dropdown-item" value="{{result.categories}}">Family</button>
