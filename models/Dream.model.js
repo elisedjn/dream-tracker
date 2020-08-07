@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const dreamSchema = new Schema({
+const DreamSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -16,9 +16,9 @@ const dreamSchema = new Schema({
   }],
   status: {
     type: String,
-    enum: [public, private]
+    enum: ["public", "private"]
   }
 });
 
 
- module.exports = model('Dream', dreamSchema);
+ module.exports = model('Dream', DreamSchema);

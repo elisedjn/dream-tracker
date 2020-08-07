@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/User.model.js')
+const DreamModel = require('../models/Dream.model.js')
 const bcryptjs = require('bcryptjs')
 
 
@@ -77,15 +78,20 @@ router.get('/record', (req, res) => {
 
 router.post('/record', (req, res) => {
     const {title, categories, description, date} = req.body
-    res.redirect('/dreams')
-
+    DreamModel.insertMany(title, categories, description, date)
+      .then(() => {
+        res.redirect('/dreams')
+      })
+      .catch((dreams) => {
+        res.render("users/record.hbs")
+     })
 });
 
 
 
 // Private dreams details
 router.get('/dreams', (req, res) => {
-    UserModel.find(req.params)
+    DreamModel.find()
         .then((result) => {
             res.render('users/dreams.hbs', {result})
         });
@@ -95,7 +101,7 @@ router.get('/dreams', (req, res) => {
 
 // Edit dreams
 router.get('/dreams/id/edit', (req, res, next) => {
-    UserModel.findById(req.params.id)
+    DreamModel.findById(req.params.id)
        .then((result) => {
            res.render("users/edit.hbs", {result})
     })
@@ -105,7 +111,7 @@ router.get('/dreams/id/edit', (req, res, next) => {
 router.post('/dreams/:id/edit', (req, res, next) => {
     let {title, categories, description, date, status} = req.body
     let dreamId = req.params.id
-    UserModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, date, status}})
+    DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, date, status}})
         .then(() => {
              res.redirect('/dreams')
         })
