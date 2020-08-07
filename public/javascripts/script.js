@@ -103,9 +103,12 @@ function createDownloadLink(blob) {
 
       console.log(myBody)
 
-      fetch('https://localhost:3000/record', {
-        method: POST,
-        body: JSON.stringify(myBody)
+      fetch('/record', {
+        method: "POST",
+        body: JSON.stringify(myBody),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
       })
       .then(() => {
         console.log("fetch done")

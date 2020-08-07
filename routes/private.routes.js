@@ -35,11 +35,16 @@ router.get('/record', (req, res) => {
 
 // Post route for the text part of the form
 router.post('/record', (req, res) => {
+  console.log("In the post record route")
+  console.log(req.body)
 const {title, categories, description, date} = req.body
 const owner = req.session.loggedInUser._id
 DreamModel.create({title, categories, description, date, owner})
 .then(() => {
-  req.session.title = title   
+  console.log("Dream created")
+  req.session.title = title  
+  res.send("All good")
+  // console.log(dataUnknown);
 })
 .catch((err) => {
   console.log(err)
