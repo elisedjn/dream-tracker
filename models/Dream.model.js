@@ -12,13 +12,14 @@ const DreamSchema = new Schema({
   description: String,
   categories: [{
     type: String,
-    enum: ["Fantasctic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare",]
+    enum: ["Fantasctic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare",""]
   }],
   status: {
     type: String,
     enum: ["public", "private"],
     default: "private"
   },
+  audioUrl: String,
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'user'

@@ -5,6 +5,30 @@ const DreamModel = require('../models/Dream.model.js')
 const bcryptjs = require('bcryptjs')
 
 
+//Configuration for Cloudinary and Recording
+const cloudinary = require("cloudinary").v2
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer  = require('multer');
+//require ('dotenv').config()
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET 
+    });
+    
+    const storage = new CloudinaryStorage({
+      cloudinary,
+      folder: 'Records', // The name of the folder in cloudinary
+      allowedFormats: ['wav'],
+      params: { resource_type: 'raw' }, //=> this is in case you want to upload other type of files, not just images
+      filename: function (req, res, cb) {
+        cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
+      }
+    });
+    
+    const uploader = multer({ storage });
+
+
 // Sign Up page
 router.get('/signup', (req, res) => {
   res.render('auth/signup.hbs')
@@ -81,13 +105,29 @@ router.post('/record', (req, res) => {
     const owner = req.session.loggedInUser._id
     DreamModel.create({title, categories, description, date, owner})
       .then(() => {
-        res.redirect('/dreams')
+        req.session.title = title   
       })
       .catch((err) => {
         console.log(err)
         res.render("users/record.hbs", {failed : true})
      })
 });
+
+// Post for the recording
+router.post('/upload', uploader.single('audio_data'), (req, res, next) => {
+    console.log('file is: ', req.file)
+      if (!req.file) {
+        next(new Error('No file uploaded!'));
+        return;
+      }
+      let audioUrl = req.file.path
+      DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
+        .then(() => res.redirect('/dreams'))
+        .catch((err) => {
+            console.log(err)
+            res.render("users/record.hbs", {failed : true})
+         })
+  })
 
 
 

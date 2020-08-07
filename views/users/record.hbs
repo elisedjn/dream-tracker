@@ -1,9 +1,20 @@
 <h3>Hello {{loggedInUser.username}}</h3>
 
-<form method="POST" action="/record">
+{{!-- <h5>Record your dream</h5>
+<div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="stopButton" disabled>Stop</button>
+</div>
+<ol id="recordingsList"></ol>
+<button id="upload" disabled>Upload</button> --}}
 
-    <label for="recordAdream">Record a dream</label>
-    <input id="recordAdream" type="" name="recordAdream" placeholder="Record a dream">
+<form >
+<h5>Record your dream</h5>
+<div id="controls">
+    <button id="recordButton">Record</button>
+    <button id="stopButton" disabled>Stop</button>
+</div>
+<ul id="recordingsList"></ul>
 
     <label for="nameYourDream">Name your dream</label>
     <input id= "nameYourDream" type="text" name="title" placeholder="Give your dream a name">
@@ -11,7 +22,7 @@
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" value="{{result.categories}}">Fantasctic</button>
+        <button class="dropdown-item" value="{{result.categories}}">Fantastic</button>
         <button class="dropdown-item" value="{{result.categories}}">Super Powers</button>
         <button class="dropdown-item" value="{{result.categories}}">Action</button>
         <button class="dropdown-item" value="{{result.categories}}">Adventure</button>
@@ -37,7 +48,7 @@
     <label for="date">Date</label>
     <input id= "date" type="date" name="date">
 
-     <button type="submit">Create</button>
+     <button type="submit" id="submitBtn">Create</button>
  
         
 </form>
@@ -45,4 +56,7 @@
 {{#if failed}}
 <p>Something went wrong, please try again</p>
 {{/if}}
+
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script src="/javascripts/script.js"></script>
 
