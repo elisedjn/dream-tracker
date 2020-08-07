@@ -78,12 +78,14 @@ router.get('/record', (req, res) => {
 
 router.post('/record', (req, res) => {
     const {title, categories, description, date} = req.body
-    DreamModel.insertMany(title, categories, description, date)
+    const owner = req.session.loggedInUser._id
+    DreamModel.create({title, categories, description, date, owner})
       .then(() => {
         res.redirect('/dreams')
       })
-      .catch((dreams) => {
-        res.render("users/record.hbs")
+      .catch((err) => {
+        console.log(err)
+        res.render("users/record.hbs", {failed : true})
      })
 });
 
@@ -91,7 +93,7 @@ router.post('/record', (req, res) => {
 
 // Private dreams details
 router.get('/dreams', (req, res) => {
-    DreamModel.find()
+    DreamModel.find({owner: req.session.loggedInUser._id})
         .then((result) => {
             res.render('users/dreams.hbs', {result})
         });
@@ -100,7 +102,7 @@ router.get('/dreams', (req, res) => {
 
 
 // Edit dreams
-router.get('/dreams/id/edit', (req, res, next) => {
+router.get('/dreams/:id/edit', (req, res, next) => {
     DreamModel.findById(req.params.id)
        .then((result) => {
            res.render("users/edit.hbs", {result})
@@ -115,9 +117,10 @@ router.post('/dreams/:id/edit', (req, res, next) => {
         .then(() => {
              res.redirect('/dreams')
         })
-        .catch((dreams) => {
-           res.render("users/edit.hbs")
-        })
+        .catch((err) => {
+            console.log(err)
+            res.render("users/record.hbs", {failed : true})
+         })
 });
 
 

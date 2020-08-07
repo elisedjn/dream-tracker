@@ -3,27 +3,52 @@
 <form method="POST" action="/dreams/{{result._id}}/edit">
 
     <label for="registerAdream">Register a dream</label>
-    <input id="registerAdream" type="" name="registerAdream" placeholder="Record a dream">
+    <input id="registerAdream" type="" name="registerAdream" value="">
 
     <label for="nameYourDream">Name your dream</label>
-    <input id= "nameYourDream" type="text" name="title" placeholder="Give your dream a name">
+    <input id= "nameYourDream" type="text" name="title" value="{{result.title}}">
 
-    <label for="categories">Categories</label>
-    <input id= "categories" type="" name="categories" placeholder="Select a category">
-    
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" value="{{result.categories}}">Fantasctic</button>
+        <button class="dropdown-item" value="{{result.categories}}">Super Powers</button>
+        <button class="dropdown-item" value="{{result.categories}}">Action</button>
+        <button class="dropdown-item" value="{{result.categories}}">Adventure</button>
+        <button class="dropdown-item" value="{{result.categories}}">Family</button>
+        <button class="dropdown-item" value="{{result.categories}}">Childhood</button>
+        <button class="dropdown-item" value="{{result.categories}}">Friends</button>
+        <button class="dropdown-item" value="{{result.categories}}">Funny</button>
+        <button class="dropdown-item" value="{{result.categories}}">Pets</button>
+        <button class="dropdown-item" value="{{result.categories}}">Job</button>
+        <button class="dropdown-item" value="{{result.categories}}">Drama</button>
+        <button class="dropdown-item" value="{{result.categories}}">Romance</button>
+        <button class="dropdown-item" value="{{result.categories}}">Celebrities</button>
+        <button class="dropdown-item" value="{{result.categories}}">XXX</button>
+        <button class="dropdown-item" value="{{result.categories}}">The Unknown</button>
+        <button class="dropdown-item" value="{{result.categories}}">Strangers</button>
+        <button class="dropdown-item" value="{{result.categories}}">Nightmare</button>
+      </div>
+    </div>
+
     <label for="description">Description (optional)</label>
-    <input id= "description" type="text" name="description" placeholder="">
+    <input id= "description" type="text" name="description" value="{{result.description}}">
 
     <label for="date">Date</label>
-    <input id= "date" type="" name="date" placeholder="Enter date">
+    <input id= "date" type="date" name="date" value="{{result.date}}">
 
     <label for="public">Public</label>
-    <input id= "public" type="" name="status" placeholder="">
+    <input id= "public" type="radio" name="status" value="{{result.status}}">
 
     <label for="private">Private</label>
-    <input id= "private" type="" name="status" placeholder="">
+    <input id= "private" type="radio" name="status" value="{{result.status}}">
 
      <button type="submit">Edit</button>
  
         
 </form>
+
+
+{{#if failed}}
+<p>Something went wrong, please try again</p>
+{{/if}}

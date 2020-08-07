@@ -3,16 +3,16 @@
 <form method="POST" action="/profile/dreams">
 
     <label for="date">Date</label>
-    <input id="date" type="" name="date" placeholder="">
+    <input id="date" type="date" name="date" placeholder="">
 
     <label for="categories">Categories</label>
-    <input id= "categores" type="" name="categories" placeholder="Select a category">
+    <input id= "categores" type="search" name="categories" placeholder="Select a category">
 
     <label for="public">Public</label>
-    <input id= "public" type="" name="public" placeholder="">
+    <input id= "public" type="radio" name="public">
 
     <label for="private">Private</label>
-    <input id= "private" type="" name="private" placeholder="">
+    <input id= "private" type="radio" name="private">
 
     <button type="submit">Search</button>
          
@@ -20,9 +20,9 @@
 
 
 <div>
-{{#each result}}
   <ul>
-    <li><a href="/profile/dreams/{{this._id}}/edit">{{result.title}}</a></li>
-  </ul>
+{{#each result}}
+    <li><a href="/dreams/{{this._id}}/edit">{{this.title}}</a></li>
 {{/each}}
+  </ul>
 </div>

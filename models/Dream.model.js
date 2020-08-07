@@ -16,7 +16,12 @@ const DreamSchema = new Schema({
   }],
   status: {
     type: String,
-    enum: ["public", "private"]
+    enum: ["public", "private"],
+    default: "private"
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
   }
 });
 
