@@ -12,16 +12,6 @@ const path         = require('path');
 // require database configuration
 require('./configs/db.config');
 
-
-mongoose
-  .connect('mongodb://localhost/dream-tracker', {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
-
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -74,5 +64,7 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
 
+const privateRouter = require('./routes/private.routes');
+app.use('/', privateRouter);
 
 module.exports = app;

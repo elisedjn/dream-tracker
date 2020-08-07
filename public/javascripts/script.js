@@ -92,7 +92,6 @@ function createDownloadLink(blob) {
       };
       var fd=new FormData();
       fd.append("audio_data",blob, filename);
-      //document.getElementById('')
       xhr.open("POST","/upload",true);
       
       let myBody = {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/express-basic-auth-dev', {
+  .connect('mongodb://localhost/dream-tracker', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
