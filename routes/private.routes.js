@@ -44,7 +44,6 @@ DreamModel.create({title, categories, description, date, owner})
   console.log("Dream created")
   req.session.title = title  
   res.send("All good")
-  // console.log(dataUnknown);
 })
 .catch((err) => {
   console.log(err)
@@ -61,7 +60,8 @@ if (!req.file) {
 }
 let audioUrl = req.file.path
 DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
-  .then(() => res.redirect('/dreams'))
+  .then(() => {
+    res.redirect('/dreams')})
   .catch((err) => {
       console.log(err)
       res.render("users/record.hbs", {failed : true})

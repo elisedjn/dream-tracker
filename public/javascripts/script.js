@@ -118,6 +118,6 @@ function createDownloadLink(blob) {
       
 	})
 
-	//add the li element to the ol
+	//add the li element to the ul
 	recordingsList.appendChild(li);
 }

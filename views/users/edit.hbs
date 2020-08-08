@@ -1,10 +1,9 @@
 <h3>Edit your dream</h3>
 
+<div>Listen to your Dream</div>
+<audio src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
+
 <form method="POST" action="/dreams/{{result._id}}/edit">
-
-    <label for="registerAdream">Register a dream</label>
-    <input id="registerAdream" type="" name="registerAdream" value="">
-
     <label for="nameYourDream">Name your dream</label>
     <input id= "nameYourDream" type="text" name="title" value="{{result.title}}">
 
