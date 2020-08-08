@@ -1,41 +1,45 @@
 {{> nav this }}
 <div id="dreams-list">
-<h1>Your past dreams</h1>
+  <h1>Your past dreams</h1>
 
-<div class="white-card search-card">
-<form method="POST" action="/profile/dreams">
+  <div class="white-card search-card">
+    <form method="POST" action="/profile/dreams">
+      <div class="search-input">
+        <label for="date">Date</label>
+        <input id="date" type="date" name="date" placeholder="">
+      </div>
+      <div class="search-radio">
+        <input id="public" type="radio" name="public">
+        <label for="public">Public</label>
+      </div>
+      <div class="search-input">
+        <label for="categories">Categories</label>
+        <input id="categores" type="search" name="categories" placeholder="Select a category">
+      </div>
+      <div class="search-radio">
+        <input id="private" type="radio" name="private">
+        <label for="private">Private</label>
+      </div>
+      <button type="submit">Search</button>
 
-    <label for="date">Date</label>
-    <input id="date" type="date" name="date" placeholder="">
-
-    <label for="categories">Categories</label>
-    <input id= "categores" type="search" name="categories" placeholder="Select a category">
-
-    <label for="public">Public</label>
-    <input id= "public" type="radio" name="public">
-    
-    <label for="private">Private</label>
-    <input id= "private" type="radio" name="private">
-    
-    <button type="submit">Search</button>
-         
-</form>
-</div>
-
-<div class="white-card list-card">
-  <ul>
-{{#each result}}
-    <li><a href="/dreams/{{this._id}}/details">{{this.title}}</a></li>
-
-    <form method="POST" action="/dreams/{{this._id}}/edit">
-      <button type="submit" class="btn btn-primary">Edit</button>
     </form>
+  </div>
 
-    <form method="POST" action="/dreams/{{this._id}}/delete">
-      <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
-{{/each}}
-  </ul>
-</div>
+  <div class="white-card list-card">
+    {{#each result}}
+    <div class="one-dream">
+      <div class="date">{{formatDate this.date "short"}}</div>
+      <a href="/dreams/{{this._id}}/details">
+        <h3>{{this.title}}</h3>
+      </a>
+
+      <a href="/dreams/{{this._id}}/edit"><img src="/images/edit.png" alt="Edit"></a>
+
+      <form method="POST" action="/dreams/{{this._id}}/delete">
+        <button type="submit"><img src="/images/bin.png" alt="Delete"></button>
+      </form>
+    </div>
+    {{/each}}
+  </div>
 
 </div>

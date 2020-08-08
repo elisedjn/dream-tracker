@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -39,6 +40,23 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Partials
 hbs.registerPartials(__dirname + '/views/partials')
+
+// Handlebars Date Setting
+const moment = require('moment'); 
+var DateFormats = {
+  short: "DD MMM",
+  long: "dddd DD.MM.YYYY HH:mm"
+};
+hbs.registerHelper("formatDate", function(datetime, format) {
+    if (moment) {
+      format = DateFormats[format] || format;
+      return moment(datetime).format(format);
+    }
+    else {
+      return datetime;
+    }
+  });
+
 
 
 // cookies and sessions

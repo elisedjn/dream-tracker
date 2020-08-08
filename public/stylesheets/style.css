@@ -19,10 +19,6 @@ h1{
   text-align: center;
 }
 
-ul{
-  list-style: none;
-}
-
 .white-card{
   background-color: rgba(255, 255, 255, 0.5);
   width: 80%;
@@ -157,6 +153,54 @@ ul{
 
 #dreams-list .white-card{
   padding: 10px;
+  margin-top: 20px;
+}
+/* Search Part */
+.search-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.search-input {
+  background-color: #c7cbcd;
+}
+.search-input input{
+  background-color: transparent;
+  border: none;
+}
+/* List Part */
+.one-dream{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #424242;
+  padding: 15px 0;
+}
+
+.list-card :first-child{
+  border-top: none;
+}
+
+.one-dream .date{
+  font-size: 0.7rem;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.one-dream h3{
+  font-size: 1.3rem;
+  margin-right: 10px;
+  margin-bottom: 0;
   
+}
+
+.one-dream img {
+  height: 15px;
+}
+
+.one-dream button {
+  background-color: transparent;
+  border: none;
 }
 

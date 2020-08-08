@@ -81,6 +81,13 @@ router.get('/dreams', (req, res) => {
       .catch((err) => console.log(err));
 });
 
+// Dreams details
+router.get('/dreams/:id/details', (req, res, next) => {
+  DreamModel.findById(req.params.id)
+   .then((result) => {
+       res.render("users/dream-details.hbs", {result})
+  })
+  });
 
 
 // Edit dreams
