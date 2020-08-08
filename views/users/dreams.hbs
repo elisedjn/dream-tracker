@@ -1,3 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="/record" class="nav-link">Record a dream</a>
+      </li>
+      <li class="nav-item">
+        <a href="/dreams" class="nav-link">Your dreams</a>
+      </li>
+      <li class="nav-item">
+        <a href="/dreamFlow" class="nav-link">Dream Flow</a>
+      </li>
+      <li class="nav-item">
+        <a href="/logout" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <h3>Your past dreams</h3>
 
 <form method="POST" action="/profile/dreams">
@@ -10,10 +32,10 @@
 
     <label for="public">Public</label>
     <input id= "public" type="radio" name="public">
-
+    
     <label for="private">Private</label>
     <input id= "private" type="radio" name="private">
-
+    
     <button type="submit">Search</button>
          
 </form>
@@ -23,6 +45,14 @@
   <ul>
 {{#each result}}
     <li><a href="/dreams/{{this._id}}/edit">{{this.title}}</a></li>
+
+    <form method="POST" action="/dreams/{{this._id}}/edit">
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+
+    <form method="POST" action="/dreams/{{this._id}}/delete">
+      <button type="submit" class="btn btn-primary">Delete</button>
+    </form>
 {{/each}}
   </ul>
 </div>
