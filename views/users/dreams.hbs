@@ -24,7 +24,7 @@
 <div>
   <ul>
 {{#each result}}
-    <li><a href="/dreams/{{this._id}}/edit">{{this.title}}</a></li>
+    <li><a href="/dreams/{{this._id}}/details">{{this.title}}</a></li>
 
     <form method="POST" action="/dreams/{{this._id}}/edit">
       <button type="submit" class="btn btn-primary">Edit</button>
