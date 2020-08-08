@@ -74,7 +74,6 @@ DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
 
 // Private list of dreams
 router.get('/dreams', (req, res) => {
-  console.log("in dreams get request")
   DreamModel.find({owner: req.session.loggedInUser._id})
       .then((result) => {
           res.render('users/dreams.hbs', {result})

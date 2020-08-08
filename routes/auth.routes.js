@@ -35,7 +35,7 @@ router.post('/signup', (req, res) => {
           .then((hashPass) => {
               UserModel.create({username, email, passwordHash: hashPass})
                   .then(()=>{
-                      res.redirect('/')
+                      res.redirect('/login')
                   });
           });
       });
@@ -66,6 +66,11 @@ router.post('/login', (req, res) => {
               res.status(500).render('auth/login.hbs', {errorMessage: 'Passwords do not match'})
           };
       });
+});
+
+//Logout
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => res.redirect('/'))
 });
 
 

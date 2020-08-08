@@ -1,7 +1,8 @@
 {{> nav this }}
+<div id="dreams-list">
+<h1>Your past dreams</h1>
 
-<h3>Your past dreams</h3>
-
+<div class="white-card search-card">
 <form method="POST" action="/profile/dreams">
 
     <label for="date">Date</label>
@@ -19,9 +20,9 @@
     <button type="submit">Search</button>
          
 </form>
+</div>
 
-
-<div>
+<div class="white-card list-card">
   <ul>
 {{#each result}}
     <li><a href="/dreams/{{this._id}}/details">{{this.title}}</a></li>
@@ -35,4 +36,6 @@
     </form>
 {{/each}}
   </ul>
+</div>
+
 </div>
