@@ -1,88 +1,24 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarMenu">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="/record" class="nav-link">Record a dream</a>
-      </li>
-      <li class="nav-item">
-        <a href="/dreams" class="nav-link">Your dreams</a>
-      </li>
-      <li class="nav-item">
-        <a href="/dreamFlow" class="nav-link">Dream Flow</a>
-      </li>
-      <li class="nav-item">
-        <a href="/logout" class="nav-link">Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+{{> nav this }}
 
-<h3>{{result.title}}</h3>
+<h1>{{result.title}}</h1>
 
-<form method="POST" action="/dreams/:id/details">
 
-    <label for="recordAdream">Listen to the dream</label>
-    <input id="recordAdream" type="" name="recordAdream" placeholder="Record a dream">
+<div>
+<div>Listen to your Dream</div>
+<audio src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
 
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <input type="checkbox" id="fantasctic" name="Fantasctic">
-        <label for="fantasctic">Fantasctic</label><br>
-        <input type="checkbox" id="superPowers" name="Super Powers">
-        <label for="superPowers">Super Powers</label><br>
-        <input type="checkbox" id="action" name="Action">
-        <label for="action">Action</label><br>
-        <input type="checkbox" id="adventure" name="Adventure">
-        <label for="adventure">Adventure</label><br>
-        <input type="checkbox" id="family" name="Family">
-        <label for="family">Family</label><br>
-        <input type="checkbox" id="childhood" name="Childhood">
-        <label for="childhood">Childhood</label><br>
-        <input type="checkbox" id="friends" name="Friends">
-        <label for="friends">Friends</label><br> 
-        <input type="checkbox" id="funny" name="Funny">
-        <label for="funny">Funny</label><br>
-        <input type="checkbox" id="pets" name="Pets">
-        <label for="pets">Pets</label><br>
-        <input type="checkbox" id="food" name="Food">
-        <label for="food">Food</label><br>
-        <input type="checkbox" id="job" name="Job">
-        <label for="job">Job</label><br>
-        <input type="checkbox" id="drama" name="Drama">
-        <label for="drama">Drama</label><br> 
-        <input type="checkbox" id="romance" name="Romance">
-        <label for="romance">Romance</label><br>
-        <input type="checkbox" id="celebrities" name="Celebrities">
-        <label for="celebrities">Celebrities</label><br>
-        <input type="checkbox" id="xxx" name="XXX">
-        <label for="xxx">XXX</label><br>
-        <input type="checkbox" id="theUnknown" name="The Unknown">
-        <label for="theUnknown">The Unknown</label><br>
-        <input type="checkbox" id="strangers" name="Strangers">
-        <label for="strangers">Strangers</label><br>
-        <input type="checkbox" id="Nightmare" name="Nightmare">
-        <label for="nightmare">Nightmare</label>
-      </div>
-    </div>
-    
-    <label for="description">Description</label>
-    <input id= "description" type="text" name="description" placeholder="Describe your dream">
+<div>{{result.status}}</div>
 
-    <label for="date">Date</label>
-    <input id= "date" type="date" name="date">
+<div>Categories</div>
+{{#each result.categories}}
+<div>{{this}}</div>
+{{/each}}
 
-    <a href="/dreams/{{this._id}}/edit">Edit</a>
+<div>Description</div>
+<p>{{result.description}}</p>
 
-    <form method="POST" action="/dreams/{{this._id}}/delete">
-      <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
-       
-</form>
 
-{{#if failed}}
-<p>Something went wrong, please try again</p>
-{{/if}}
+<div>Date</div>
+<p>{{result.date}}</p>
+</div>
+

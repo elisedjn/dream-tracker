@@ -38,12 +38,17 @@
     <label for="date">Date</label>
     <input id= "date" type="date" name="date" value="{{result.date}}">
 
-    <label for="public">Public</label>
-    <input id= "public" type="radio" name="status" value="{{result.status}}">
+{{#if publicStatus}}
+    <label for="status">Make it private</label>
+    <input id= "status" type="radio" name="status" value="private">
+{{else}}
+    <label for="status">Make it public</label>
+    <input id= "status" type="radio" name="status" value="public">
+{{/if}}
 
-    <label for="private">Private</label>
-    <input id= "private" type="radio" name="status" value="{{result.status}}">
 
+
+  
      <button type="submit">Edit</button>
  
         

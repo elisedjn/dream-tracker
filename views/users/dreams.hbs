@@ -2,7 +2,7 @@
 
 <h3>Your past dreams</h3>
 
-<form method="POST" action="/profile/dreams">
+<form method="POST" action="/dreams">
 
     <label for="date">Date</label>
     <input id="date" type="date" name="date" placeholder="">
@@ -26,9 +26,7 @@
 {{#each result}}
     <li><a href="/dreams/{{this._id}}/details">{{this.title}}</a></li>
 
-    <form method="POST" action="/dreams/{{this._id}}/edit">
-      <button type="submit" class="btn btn-primary">Edit</button>
-    </form>
+    <a href="/dreams/{{this._id}}/edit"><button class="btn btn-primary">Edit</button></a>
 
     <form method="POST" action="/dreams/{{this._id}}/delete">
       <button type="submit" class="btn btn-primary">Delete</button>
