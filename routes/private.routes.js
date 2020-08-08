@@ -102,5 +102,37 @@ DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, da
    })
 });
 
+// Dreams delete 
+router.post('/dreams/:id/delete', (req, res, next) => {
+  DreamModel.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect("/dreams")
+  })
+
+})
+
+
+
+// Dream details
+router.get('/dreams/:id/details', (req, res, next) => {
+  DreamModel.findById(req.params.id)
+   .then((result) => {
+       res.render("users/dream-details.hbs", {result})
+  })
+  });
+  
+
+
+// Public list of dreams
+router.get('/dreamFlow', (req, res) => {
+  DreamModel.find({status: "public"})
+      .then((result) => {
+          res.render('users/dream-flow.hbs', {result})
+      });
+});
+
+
+
+
 
 module.exports = router;

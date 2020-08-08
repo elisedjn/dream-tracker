@@ -3,13 +3,10 @@ body {
   font-size: 14px;
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
  }
-
 a {
   font-weight: bolder;
   color: #143360; }
-
 /*# sourceMappingURL=style.css.map */
-
 h1{
   color: white;
   /* font-family: 'Milonga'; */
@@ -18,7 +15,6 @@ h1{
   font-weight: bolder;
   text-align: center;
 }
-
 /* HOME PAGE STYLING */
 #homePage{
   width: 100vw;
@@ -29,21 +25,16 @@ h1{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
 }
-
 #homePage h1{
   font-size: 4.5rem;
 }
-
 #homePage .btns{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
-
 .auth-btn{
   background-color: #152936;
   color: white;
@@ -54,12 +45,9 @@ h1{
   width: 300px;
   box-shadow: 0 5px 15px #193047;
 }
-
 #homePage .btns a {
   margin-top: 30px;
 }
-
-
 /* LOGIN STYLING*/
 #login {
   background-image: linear-gradient(rgba(22,41,54,0.5), rgba(22,41,54,0.5)), url(../images/bg01.jpg);
@@ -67,11 +55,9 @@ h1{
   height: 100vh;
   background-size: cover;
 }
-
 #login h1{
   padding-top: 30px;
 }
-
 #login .white-card{
   background-color: rgba(255, 255, 255, 0.5);
   width: 80%;
@@ -82,20 +68,16 @@ h1{
   box-shadow: 0 5px 15px #193047;
   text-align: center;
 }
-
 #login form{
   display: flex;
   flex-direction: column;
 }
-
 #login form label {
   margin: 0;
 }
-
 #login form label img{
   height: 20px;
 }
-
 .input-band{
   background-color: #c7cbcd ;
   border-radius: 5px;
@@ -104,23 +86,19 @@ h1{
   display: flex;
   align-items: baseline;
 }
-
 .input-band input{
   border: none;
   background-color: #c7cbcd;
   margin-left: 10px;
   width: 100%;
 }
-
 #login .auth-btn {
   width: 200px;
   margin: 20px 0;
 }
-
 #login p {
   color: #424242;
 }
-
 .error-msg{
   color: #424242;
   font-size: 1.1rem;
@@ -129,7 +107,6 @@ h1{
   align-items: center;
   justify-content: center;
 }
-
 .error-msg img{
   height: 15px;
   margin-right: 10px;

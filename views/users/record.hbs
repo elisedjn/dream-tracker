@@ -2,7 +2,7 @@
 
 <h3>Hello {{loggedInUser.username}}</h3>
 
-<form >
+<div>
 <h5>Record your dream</h5>
 <div id="controls">
     <button id="recordButton">Record</button>
@@ -13,6 +13,37 @@
     <label for="nameYourDream">Name your dream</label>
     <input id= "nameYourDream" type="text" name="title" placeholder="Give your dream a name">
 
+
+<div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" value="{{fantastic}}">Fantasctic</button>
+        <button class="dropdown-item" >Super Powers</button>
+        <button class="dropdown-item" >Action</button>
+        <button class="dropdown-item" >Adventure</button>
+        <button class="dropdown-item" >Family</button>
+        <button class="dropdown-item" >Childhood</button>
+        <button class="dropdown-item" >Friends</button>
+        <button class="dropdown-item" >Funny</button>
+        <button class="dropdown-item" >Pets</button>
+        <button class="dropdown-item" >Job</button>
+        <button class="dropdown-item" >Drama</button>
+        <button class="dropdown-item" >Romance</button>
+        <button class="dropdown-item" >Celebrities</button>
+        <button class="dropdown-item" >XXX</button>
+        <button class="dropdown-item" >The Unknown</button>
+        <button class="dropdown-item" >Strangers</button>
+        <button class="dropdown-item" >Nightmare</button>
+      </div>
+    </div>
+
+
+
+
+
+
+
+<!--
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -53,7 +84,7 @@
         <input type="checkbox" id="Nightmare" name="Nightmare">
         <label for="nightmare">Nightmare</label>
       </div>
-    </div>
+    </div>-->
     
     <label for="description">Description (optional)</label>
     <input id= "description" type="text" name="description" placeholder="Describe your dream">
@@ -64,7 +95,7 @@
      {{!-- <button id="submitBtn">Create</button> --}}
  
         
-</form>
+</div>
 <button id="submitBtn">Create</button>
 
 {{#if failed}}
