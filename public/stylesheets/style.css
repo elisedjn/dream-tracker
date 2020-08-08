@@ -117,9 +117,63 @@ h1{
   justify-content: flex-end;
 }
 
+#navbarMenu {
+  justify-content: flex-end;
+
+}
+
+
+.titles {
+  color: white;
+  /* font-family: 'Milonga'; */
+  font-family: 'Megrim';
+  /* font-family: 'Aclonica'; */
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 10px;
+
+}
+
 #record {
   background-image: linear-gradient(rgba(22,41,54,0.5), rgba(22,41,54,0.5)), url(../images/Bimg-JR01.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;
 }
+
+#record .white-card{
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px #193047;
+}
+
+.words {
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+
+.create-btn {
+  background-color: #152936;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  width: 100px;
+  box-shadow: 0 5px 15px #193047;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.audio {
+  width: 260px;
+  height: 35px;
+}
+
+

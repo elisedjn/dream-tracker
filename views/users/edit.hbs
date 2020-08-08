@@ -1,63 +1,65 @@
 <div id="record">
-{{> nav this }}
-
-<h3>Edit your dream</h3>
-
-<div>Listen to your Dream</div>
-<audio src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
-
-<form method="POST" action="/dreams/{{result._id}}/edit">
-    <label for="nameYourDream">Name your dream</label>
-    <input id= "nameYourDream" type="text" name="title" value="{{result.title}}">
-
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" value="{{result.categories}}">Fantasctic</button>
-        <button class="dropdown-item" value="{{result.categories}}">Super Powers</button>
-        <button class="dropdown-item" value="{{result.categories}}">Action</button>
-        <button class="dropdown-item" value="{{result.categories}}">Adventure</button>
-        <button class="dropdown-item" value="{{result.categories}}">Family</button>
-        <button class="dropdown-item" value="{{result.categories}}">Childhood</button>
-        <button class="dropdown-item" value="{{result.categories}}">Friends</button>
-        <button class="dropdown-item" value="{{result.categories}}">Funny</button>
-        <button class="dropdown-item" value="{{result.categories}}">Pets</button>
-        <button class="dropdown-item" value="{{result.categories}}">Job</button>
-        <button class="dropdown-item" value="{{result.categories}}">Drama</button>
-        <button class="dropdown-item" value="{{result.categories}}">Romance</button>
-        <button class="dropdown-item" value="{{result.categories}}">Celebrities</button>
-        <button class="dropdown-item" value="{{result.categories}}">XXX</button>
-        <button class="dropdown-item" value="{{result.categories}}">The Unknown</button>
-        <button class="dropdown-item" value="{{result.categories}}">Strangers</button>
-        <button class="dropdown-item" value="{{result.categories}}">Nightmare</button>
+  {{> nav this }}
+  <h1 class="titles">Edit your dream</h1>
+  <div class="white-card">
+    <p class="words">Listen to your Dream</p>
+    <audio class="audio" src="{{result.audioUrl}}" type="audio/wav" controls></audio>
+    <form method="POST" action="/dreams/{{result._id}}/edit">
+      <label class="words" for="nameYourDream">Rename your dream</label>
+      <div class="input-band">
+        <input id= "nameYourDream" type="text" name="title" value="{{result.title}}">
       </div>
-    </div>
+    </form>
 
-    <label for="description">Description (optional)</label>
-    <input id= "description" type="text" name="description" value="{{result.description}}">
+     <div class="dropdown">
+       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+         <button class="dropdown-item" value="{{fantastic}}">Fantasctic</button>
+         <button class="dropdown-item" >Super Powers</button>
+         <button class="dropdown-item" >Action</button>
+         <button class="dropdown-item" >Adventure</button>
+         <button class="dropdown-item" >Family</button>
+         <button class="dropdown-item" >Childhood</button>
+         <button class="dropdown-item" >Friends</button>
+         <button class="dropdown-item" >Funny</button>
+         <button class="dropdown-item" >Pets</button>
+         <button class="dropdown-item" >Job</button>
+         <button class="dropdown-item" >Drama</button>
+         <button class="dropdown-item" >Romance</button>
+         <button class="dropdown-item" >Celebrities</button>
+         <button class="dropdown-item" >XXX</button>
+         <button class="dropdown-item" >The Unknown</button>
+         <button class="dropdown-item" >Strangers</button>
+         <button class="dropdown-item" >Nightmare</button>
+       </div>
+     </div>
 
-    <label for="date">Date</label>
-    <input id= "date" type="date" name="date" value="{{result.date}}">
+     <p class="words">Description (optional)</p>
+     <div class="input-band">
+        <input id= "description" type="text" name="description" value="{{result.description}}">
+     </div>
+     
 
-{{#if publicStatus}}
-    <label for="status">Make it private</label>
-    <input id= "status" type="radio" name="status" value="private">
-{{else}}
-    <label for="status">Make it public</label>
-    <input id= "status" type="radio" name="status" value="public">
-{{/if}}
+     <p class="words">Date</p>
+     <div class="input-band">
+        <input id= "date" type="date" name="date" value="{{result.date}}">
+     </div>
 
-
-
-  
-     <button type="submit">Edit</button>
+     <div>
+       {{#if publicStatus}}
+        <label class="words" for="status">Make it private</label>
+        <input id= "status" type="radio" name="status" value="private">
+      {{else}}
+        <label for="status">Make it public</label>
+        <input id= "status" type="radio" name="status" value="public">
+      {{/if}}
+     </div>
+    
+    <button class="create-btn" type="submit">Edit</button>
  
-        
-</form>
+    {{#if failed}}
+      <p>Something went wrong, please try again</p>
+    {{/if}}
 
-
-{{#if failed}}
-<p>Something went wrong, please try again</p>
-{{/if}}
-
+  </div>
 </div>
