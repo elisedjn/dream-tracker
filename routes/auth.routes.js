@@ -91,7 +91,7 @@ router.post('/record', (req, res) => {
 
 
 
-// Private dreams details
+// Private list of dreams
 router.get('/dreams', (req, res) => {
     DreamModel.find({owner: req.session.loggedInUser._id})
         .then((result) => {
@@ -122,6 +122,28 @@ router.post('/dreams/:id/edit', (req, res, next) => {
             res.render("users/record.hbs", {failed : true})
          })
 });
+
+
+
+// Dreams delete 
+router.post('/dreams/:id/delete', (req, res, next) => {
+      DreamModel.findByIdAndDelete(req.params.id)
+        .then(() => {
+          res.redirect("/dreams")
+      })
+  
+  })
+
+
+
+// Public list of dreams
+router.get('/dreamFlow', (req, res) => {
+    DreamModel.find({owner: req.session.loggedInUser._id})
+        .then((result) => {
+            res.render('users/dream-flow.hbs', {result})
+        });
+});
+
 
 
 

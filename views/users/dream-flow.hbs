@@ -20,21 +20,15 @@
   </div>
 </nav>
 
-<h3>Your past dreams</h3>
+<h3>Dream Flow</h3>
 
-<form method="POST" action="/profile/dreams">
+<form method="POST" action="/dreamFlow">
 
     <label for="date">Date</label>
     <input id="date" type="date" name="date" placeholder="">
 
     <label for="categories">Categories</label>
     <input id= "categores" type="search" name="categories" placeholder="Select a category">
-
-    <label for="public">Public</label>
-    <input id= "public" type="radio" name="public">
-    
-    <label for="private">Private</label>
-    <input id= "private" type="radio" name="private">
     
     <button type="submit">Search</button>
          
@@ -45,14 +39,6 @@
   <ul>
 {{#each result}}
     <li><a href="/dreams/{{this._id}}/details">{{this.title}}</a></li>
-
-    <form method="POST" action="/dreams/{{this._id}}/edit">
-      <button type="submit" class="btn btn-primary">Edit</button>
-    </form>
-
-    <form method="POST" action="/dreams/{{this._id}}/delete">
-      <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
 {{/each}}
   </ul>
 </div>
