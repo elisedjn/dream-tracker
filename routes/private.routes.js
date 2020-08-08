@@ -61,7 +61,9 @@ if (!req.file) {
 let audioUrl = req.file.path
 DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
   .then(() => {
-    res.redirect('/dreams')})
+    console.log("before redirect")
+    res.redirect('/dreams')
+  })
   .catch((err) => {
       console.log(err)
       res.render("users/record.hbs", {failed : true})
@@ -72,10 +74,12 @@ DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
 
 // Private list of dreams
 router.get('/dreams', (req, res) => {
+  console.log("in dreams get request")
   DreamModel.find({owner: req.session.loggedInUser._id})
       .then((result) => {
           res.render('users/dreams.hbs', {result})
-      });
+      })
+      .catch((err) => console.log(err));
 });
 
 

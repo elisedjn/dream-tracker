@@ -87,7 +87,7 @@ function createDownloadLink(blob) {
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
-		          console.log("Server returned: ",e.target.responseText);
+              window.location.href="/dreams"
 		      }
       };
       var fd=new FormData();
