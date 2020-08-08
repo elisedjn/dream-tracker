@@ -1,16 +1,23 @@
-<form method="POST" action="/login">
+<div id="login">
+    <h1>Dream Tracker</h1>
+    <div class="white-card">
+        <form method="POST" action="/login">
+            <div class="input-band">
+                <label for="email"><img src="/images/email.png" alt="Email"></label>
+                <input id="email" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="input-band">
+                <label for="password"><img src="/images/lock.png" alt="Password"></label>
+                <input id="password" type="password" name="password" placeholder="Password">
+            </div>
+            {{#if errorMessage}}
+            <div class="error-msg"><img src="/images/star.png" alt="!!">{{errorMessage}}</div>
+            {{/if}}
+            <div>
+                <button class="auth-btn" type="submit">Log In!</button>
+                <p>Not a member yet? <br /> <a href="/signup">Sign Up</a></p>
+            </div>
+        </form>
 
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" placeholder="Enter Email">
-
-    <label for="password">Password</label>
-    <input id= "password" type="password" name="password" placeholder="Enter password">
-
-    <button type="submit">Log In!</button>
-    <p>Not a member yet? <a href="/signup">Sign Up</a></p>
-        
-</form>
-
-{{#if errorMessage}}
-    <div>{{errorMessage}}</div>
-{{/if}}
+    </div>
+</div>
