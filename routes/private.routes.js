@@ -127,12 +127,10 @@ router.post('/dreams/:id/delete', (req, res, next) => {
 // Dream details
 router.get('/dreams/:id/details', (req, res, next) => {
   DreamModel.findById(req.params.id)
-   .then((result) => {
-       res.render("users/dream-details.hbs", {result})
-         DreamModel.find({status: "private"})
-           .then((result) => {
-              res.render('users/dream-details.hbs', {result})
-          });
+  .then((result) => {
+    let privateStatus;
+    result.status == "private"? privateStatus = true : privateStatus = false
+     res.render("users/dream-details.hbs", {result, privateStatus})
   })
 });
   
