@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/User.model.js')
 const DreamModel = require('../models/Dream.model.js')
-
 //Configuration for Cloudinary and Recording
 const cloudinary = require("cloudinary").v2
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -13,7 +12,6 @@ cloudinary.config({
     api_key: process.env.API_KEY, 
     api_secret: process.env.API_SECRET 
     });
-    
     const storage = new CloudinaryStorage({
       cloudinary,
       folder: 'Records', // The name of the folder in cloudinary
@@ -23,16 +21,12 @@ cloudinary.config({
         cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
       }
     });
-    
     const uploader = multer({ storage });
 // -----------------------------------------
-
-
 // Create a dream page
 router.get('/record', (req, res) => {
   res.render('users/record.hbs', {loggedInUser: req.session.loggedInUser})
 });
-
 // Post route for the text part of the form
 router.post('/record', (req, res) => {
   console.log("In the post record route")
@@ -50,7 +44,6 @@ DreamModel.create({title, categories, description, date, owner})
   res.render("users/record.hbs", {failed : true})
 })
 });
-
 // Post for the recording part (store it in cloudinary and in the db)
 router.post('/upload', uploader.single('audio_data'), (req, res, next) => {
 console.log('file is: ', req.file)
@@ -69,9 +62,6 @@ DreamModel.findOneAndUpdate({title: req.session.title}, {$set: {audioUrl}})
       res.render("users/record.hbs", {failed : true})
    })
 })
-
-
-
 // Private list of dreams
 router.get('/dreams', (req, res) => {
   DreamModel.find({owner: req.session.loggedInUser._id})
@@ -80,16 +70,12 @@ router.get('/dreams', (req, res) => {
       })
       .catch((err) => console.log(err));
 });
-
 router.post('/dreams', (req, res) => {
   DreamModel.find({owner: req.session.loggedInUser._id})
       .then((result) => {
           res.render('users/dreams.hbs', {result})
       });
 });
-
-
-
 // Edit dreams
 router.get('/dreams/:id/edit', (req, res, next) => {
 DreamModel.findById(req.params.id)
@@ -99,8 +85,6 @@ DreamModel.findById(req.params.id)
      res.render("users/edit.hbs", {result, publicStatus})
 })
 });
-
-
 router.post('/dreams/:id/edit', (req, res, next) => {
   console.log(req.body)
 let {title, categories, description, date, status} = req.body
@@ -114,7 +98,6 @@ DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, da
       res.render("users/record.hbs", {failed : true})
    })
 });
-
 // Delete Dream
 router.post('/dreams/:id/delete', (req, res) => {
   DreamModel.findByIdAndDelete(req.params.id)
@@ -123,8 +106,6 @@ router.post('/dreams/:id/delete', (req, res) => {
       console.log(err)
    })
 })
-
-
 // Dream details
 router.get('/dreams/:id/details', (req, res, next) => {
   DreamModel.findById(req.params.id)
@@ -135,9 +116,6 @@ router.get('/dreams/:id/details', (req, res, next) => {
   })
   .catch((err) => console.log(err))
 });
-  
-
-
 // Public list of dreams
 router.get('/dreamFlow', (req, res) => {
   DreamModel.find({status: "public"})
@@ -145,6 +123,4 @@ router.get('/dreamFlow', (req, res) => {
           res.render('users/dream-flow.hbs', {result})
       });
 });
-
-
 module.exports = router;
