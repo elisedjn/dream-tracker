@@ -29,7 +29,7 @@
     <div class="editAndDelete">
       {{#if privateStatus}}
       <a href="/dreams/{{result._id}}/edit"><button class="create-btn">Edit</button></a>
-      <form method="POST" action="/dreams/{{this._id}}/delete">
+      <form method="POST" action="/dreams/{{result._id}}/delete">
       <button type="submit" class="create-btn">Delete</button>
       </form>
       {{/if}}

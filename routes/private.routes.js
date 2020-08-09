@@ -81,14 +81,6 @@ router.get('/dreams', (req, res) => {
       .catch((err) => console.log(err));
 });
 
-// Dreams details
-router.get('/dreams/:id/details', (req, res, next) => {
-  DreamModel.findById(req.params.id)
-   .then((result) => {
-       res.render("users/dream-details.hbs", {result})
-  })
-  });
-
 router.post('/dreams', (req, res) => {
   DreamModel.find({owner: req.session.loggedInUser._id})
       .then((result) => {
@@ -123,6 +115,7 @@ DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, da
    })
 });
 
+// Delete Dream
 router.post('/dreams/:id/delete', (req, res) => {
   DreamModel.findByIdAndDelete(req.params.id)
     .then(() => res.redirect('/dreams'))
@@ -132,15 +125,15 @@ router.post('/dreams/:id/delete', (req, res) => {
 })
 
 
-
 // Dream details
 router.get('/dreams/:id/details', (req, res, next) => {
   DreamModel.findById(req.params.id)
   .then((result) => {
     let privateStatus;
-    result.status == "private"? privateStatus = true : privateStatus = false
+    result.status == "private"? privateStatus = true : privateStatus = false;
      res.render("users/dream-details.hbs", {result, privateStatus})
   })
+  .catch((err) => console.log(err))
 });
   
 
