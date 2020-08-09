@@ -112,5 +112,24 @@ DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, da
    })
 });
 
+router.post('/dreams/:id/delete', (req, res) => {
+  DreamModel.findByIdAndDelete(req.params.id)
+    .then(() => res.redirect('/dreams'))
+    .catch((err) => {
+      console.log(err)
+   })
+})
+
+
+
+
+// Public list of dreams
+router.get('/dreamFlow', (req, res) => {
+  DreamModel.find({status: "public"})
+      .then((result) => {
+          res.render('users/dream-flow.hbs', {result})
+      });
+});
+
 
 module.exports = router;

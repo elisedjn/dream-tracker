@@ -1,25 +1,27 @@
 body {
   background-color: #143360;
   font-size: 14px;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
- }
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
 
 a {
   font-weight: bolder;
-  color: #143360; }
+  color: #143360;
+}
 
 /*# sourceMappingURL=style.css.map */
 
-h1{
+h1 {
   color: white;
   /* font-family: 'Milonga'; */
-  font-family: 'Megrim';
+  font-family: "Megrim";
   /* font-family: 'Aclonica'; */
   font-weight: bolder;
   text-align: center;
 }
 
-.white-card{
+.white-card {
   background-color: rgba(255, 255, 255, 0.5);
   width: 80%;
   margin: auto;
@@ -29,7 +31,7 @@ h1{
 }
 
 /* HOME PAGE STYLING */
-#homePage{
+#homePage {
   width: 100vw;
   height: 100vh;
   background-image: url(../images/bg01.jpg);
@@ -38,22 +40,20 @@ h1{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
 }
 
-#homePage h1{
+#homePage h1 {
   font-size: 4.5rem;
 }
 
-#homePage .btns{
+#homePage .btns {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-
-.auth-btn{
+.auth-btn {
   background-color: #152936;
   color: white;
   border: none;
@@ -68,25 +68,28 @@ h1{
   margin-top: 30px;
 }
 
-
 /* LOGIN & SIGN UP STYLING*/
 #login {
-  background-image: linear-gradient(rgba(22,41,54,0.5), rgba(22,41,54,0.5)), url(../images/bg01.jpg);
+  background-image: linear-gradient(
+      rgba(22, 41, 54, 0.5),
+      rgba(22, 41, 54, 0.5)
+    ),
+    url(../images/bg01.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;
 }
 
-#login h1{
+#login h1 {
   padding-top: 30px;
 }
 
-#login .white-card{
+#login .white-card {
   margin-top: 100px;
   padding: 50px 20px;
 }
 
-#login form{
+#login form {
   display: flex;
   flex-direction: column;
 }
@@ -95,12 +98,12 @@ h1{
   margin: 0;
 }
 
-#login form label img{
+#login form label img {
   height: 20px;
 }
 
-.input-band{
-  background-color: #c7cbcd ;
+.input-band {
+  background-color: #c7cbcd;
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -108,7 +111,7 @@ h1{
   align-items: baseline;
 }
 
-.input-band input{
+.input-band input {
   border: none;
   background-color: #c7cbcd;
   margin-left: 10px;
@@ -124,7 +127,7 @@ h1{
   color: #424242;
 }
 
-.error-msg{
+.error-msg {
   color: #424242;
   font-size: 1.1rem;
   font-style: italic;
@@ -133,44 +136,65 @@ h1{
   justify-content: center;
 }
 
-.error-msg img{
+.error-msg img {
   height: 15px;
   margin-right: 10px;
 }
 
 /* DREAMS LIST */
-#dreams-list{
-  background-image: linear-gradient(rgba(22,41,54,0.5), rgba(22,41,54,0.5)), url(../images/bg10.jpg);
+#dreams-list,
+#dream-flow {
+  background-image: linear-gradient(
+      rgba(22, 41, 54, 0.5),
+      rgba(22, 41, 54, 0.5)
+    ),
+    url(../images/bg10.jpg);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
+  background-attachment: fixed;
 }
 
-#dreams-list h1 {
+#dreams-list h1,
+#dream-flow h1 {
   width: 80%;
   margin: auto;
 }
 
-#dreams-list .white-card{
+#dreams-list .white-card,
+#dream-flow .white-card {
   padding: 10px;
   margin-top: 20px;
+  width: 85%;
 }
 /* Search Part */
 .search-card {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
 }
+.search-col .input-band {
+  width: 230px;
+}
 
-.search-input {
-  background-color: #c7cbcd;
+.search-col .input-band label {
+  margin: 0;
 }
-.search-input input{
-  background-color: transparent;
-  border: none;
+
+.search-radio {
+  font-size: 0.7rem;
+  margin-left: 5px;
 }
+
+#dreams-list .auth-btn, #dream-flow .auth-btn {
+  width: 200px;
+  box-shadow: none;
+}
+
+/* Radio Buttons */
+
+
 /* List Part */
-.one-dream{
+.one-dream {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -178,21 +202,20 @@ h1{
   padding: 15px 0;
 }
 
-.list-card :first-child{
+.list-card :first-child {
   border-top: none;
 }
 
-.one-dream .date{
+.one-dream .date {
   font-size: 0.7rem;
   width: 50px;
   margin-right: 5px;
 }
 
-.one-dream h3{
+.one-dream h3 {
   font-size: 1.3rem;
   margin-right: 10px;
   margin-bottom: 0;
-  
 }
 
 .one-dream img {
@@ -204,3 +227,8 @@ h1{
   border: none;
 }
 
+/* DREAM FLOW */
+#dream-flow .one-dream a {
+  display: block;
+  width: 100%;
+}
