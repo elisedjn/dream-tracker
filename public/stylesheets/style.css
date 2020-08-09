@@ -167,13 +167,24 @@ h1{
   border-radius: 5px;
   width: 100px;
   box-shadow: 0 5px 15px #193047;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .audio {
   width: 260px;
   height: 35px;
+}
+
+.editAndDelete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.edit-btn {
+  display: flex;
+  justify-content: center;
 }
 
 

@@ -1,26 +1,40 @@
 <div id="record">
-{{> nav this }}
+  {{> nav this }}
+  <h1 class="titles">{{result.title}}</h1>
+  <div class="white-card">
+    <p class="words">Listen to your Dream</p>
+    <audio class="audio" src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
+    
+    
+    <p class="words">Categories</p>
+    {{#each result.categories}}
+      <div class="input-band">{{this}}</div>
+    {{/each}}
 
-<h1>{{result.title}}</h1>
+    <p class="words">Description</p>
+    <div class="input-band">
+      <p>{{result.description}}</p>
+    </div>
 
+    <p class="words">Status</p>
+    <div class="input-band">
+      <div>{{result.status}}</div>
+    </div>
+    
+    <p class="words">Date</p>
+    <div>
+      <p class="input-band">{{result.date}}</p>
+    </div>
 
-<div>
-<div>Listen to your Dream</div>
-<audio src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
+    <div class="editAndDelete">
+      {{#if privateStatus}}
+      <a href="/dreams/{{result._id}}/edit"><button class="create-btn">Edit</button></a>
+      <form method="POST" action="/dreams/{{this._id}}/delete">
+      <button type="submit" class="create-btn">Delete</button>
+      </form>
+      {{/if}}
+    </div>
 
-<div>{{result.status}}</div>
-
-<div>Categories</div>
-{{#each result.categories}}
-<div>{{this}}</div>
-{{/each}}
-
-<div>Description</div>
-<p>{{result.description}}</p>
-
-
-<div>Date</div>
-<p>{{result.date}}</p>
-</div>
+  </div>
 </div>
 
