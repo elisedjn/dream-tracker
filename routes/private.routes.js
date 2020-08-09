@@ -89,17 +89,28 @@ router.get('/dreams/:id/details', (req, res, next) => {
   })
   });
 
+router.post('/dreams', (req, res) => {
+  DreamModel.find({owner: req.session.loggedInUser._id})
+      .then((result) => {
+          res.render('users/dreams.hbs', {result})
+      });
+});
+
+
 
 // Edit dreams
 router.get('/dreams/:id/edit', (req, res, next) => {
 DreamModel.findById(req.params.id)
  .then((result) => {
-     res.render("users/edit.hbs", {result})
+    let publicStatus;
+    result.status == "public"? publicStatus = true : publicStatus = false
+     res.render("users/edit.hbs", {result, publicStatus})
 })
 });
 
 
 router.post('/dreams/:id/edit', (req, res, next) => {
+  console.log(req.body)
 let {title, categories, description, date, status} = req.body
 let dreamId = req.params.id
 DreamModel.findByIdAndUpdate(dreamId, {$set: {title, categories, description, date, status}})
@@ -121,6 +132,17 @@ router.post('/dreams/:id/delete', (req, res) => {
 })
 
 
+
+// Dream details
+router.get('/dreams/:id/details', (req, res, next) => {
+  DreamModel.findById(req.params.id)
+  .then((result) => {
+    let privateStatus;
+    result.status == "private"? privateStatus = true : privateStatus = false
+     res.render("users/dream-details.hbs", {result, privateStatus})
+  })
+});
+  
 
 
 // Public list of dreams
