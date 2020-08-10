@@ -94,12 +94,32 @@ function createDownloadLink(blob) {
       fd.append("audio_data",blob, filename);
       xhr.open("POST","/upload",true);
       
+      let categories = [];
+ 
+      let btnsArr = document.querySelectorAll(".dropdown-item") 
+      console.log(btnsArr)
+      btnsArr.forEach (btn => {
+        btn.addEventListener("click", function(event) {
+          btn.classList.toggle("active");
+          categories.forEach((elem, index) => {
+            if (elem == btn.value){
+              categories.splice(index, 1)
+            } else {
+              categories.push(btn.value)
+            }
+          })
+      })  
+    }) 
 
+    console.log(categories)
+
+      
+      
       let myBody = {
         title: document.querySelector("#nameYourDream").value,
         description: document.querySelector("#description").value,
         date: document.querySelector("#date").value,
-        categories: ["Action"]
+        categories
       }
 
       console.log(myBody)
