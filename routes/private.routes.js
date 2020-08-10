@@ -148,10 +148,15 @@ router.get("/dreams/:id/edit", (req, res, next) => {
 router.post("/dreams/:id/edit", (req, res, next) => {
   console.log(req.body);
   let { title, categories, description, date, status } = req.body;
+  let update = {title, description, date};
+  if(categories !== undefined){
+    update.categories = categories;
+  }
+  if(status !== undefined){
+    update.status = status;
+  }
   let dreamId = req.params.id;
-  DreamModel.findByIdAndUpdate(dreamId, {
-    $set: { title, categories, description, date, status },
-  })
+  DreamModel.findByIdAndUpdate(dreamId, {$set: update})
     .then(() => {
       res.redirect("/dreams");
     })
