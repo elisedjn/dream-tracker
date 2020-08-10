@@ -44,7 +44,7 @@ router.post("/record", (req, res) => {
   console.log(req.body);
   const { title, categories, description, date } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.create({ title, categories, description, date, owner })
+  DreamModel.findOneAndUpdate({ title, categories, description, date, owner }, {$set: {title, categories, description, date, owner}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       req.session.title = title;
@@ -71,6 +71,23 @@ router.post("/upload", uploader.single("audio_data"), (req, res, next) => {
     .then(() => {
       console.log("before redirect");
       res.redirect("/dreams");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("users/record.hbs", { failed: true });
+    });
+});
+
+//Post for a dream without recording part
+router.post("/recordNoVoice", (req, res) => {
+  console.log("In the post record No Voice route");
+  console.log(req.body);
+  const { title, categories, description, date } = req.body;
+  const owner = req.session.loggedInUser._id;
+  DreamModel.findOneAndUpdate({ title, categories, description, date, owner }, {$set: {title, categories, description, date, owner}}, {upsert: true}) //upsert will create the document if it's not there
+    .then(() => {
+      console.log("Dream created");
+      res.redirect("/dreams")
     })
     .catch((err) => {
       console.log(err);

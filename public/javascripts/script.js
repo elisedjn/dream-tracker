@@ -8,6 +8,7 @@ var input;
 // shim for AudioContext when it's not avb. 
 var AudioContext;
 var audioContext;
+let upload;
 //new audio context to help us record 
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
@@ -57,8 +58,7 @@ function stopRecording() {
   //tell the recorder to stop the recording 
   rec.stop(); //stop microphone access 
   gumStream.getAudioTracks()[0].stop();
-  //create the wav blob and pass it on to createDownloadLink 
-  rec.exportWAV(createDownloadLink);
+  
 }
 
 function createDownloadLink(blob) {
@@ -80,9 +80,6 @@ function createDownloadLink(blob) {
 	//add the filename to the li
 	li.appendChild(document.createTextNode(filename))
 	
-	//upload linked to the submit button of the form
-	var upload = document.getElementById("submitBtn");
-	upload.addEventListener("click", function(event){
     // XMLHTTP Request
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
@@ -117,8 +114,37 @@ function createDownloadLink(blob) {
       })
       .catch((err) => console.log(err))
       
-	})
 
 	//add the li element to the ul
 	recordingsList.appendChild(li);
 }
+
+
+// If record button is never clicked
+//upload linked to the submit button of the form
+upload = document.getElementById("submitBtn");
+upload.addEventListener("click", event => {
+  if (typeof rec == 'undefined'){ // There is no recording
+    let myBody = {
+      title: document.querySelector("#nameYourDream").value,
+      description: document.querySelector("#description").value,
+      date: document.querySelector("#date").value,
+      categories: ["Action"]
+    }
+    fetch('/recordNoVoice', {
+      method: "POST",
+      body: JSON.stringify(myBody),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then(() => {
+      console.log("no recording fetch done")
+      window.location.href="/dreams"
+    })
+    .catch((err) => console.log(err))
+  } else { // There is a recording, we do all the xmlhttp and fetch logic
+    //create the wav blob and pass it on to createDownloadLink 
+  rec.exportWAV(createDownloadLink);
+  }    
+	})
