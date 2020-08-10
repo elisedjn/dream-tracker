@@ -137,10 +137,15 @@ router.get("/dreams/:id/edit", (req, res, next) => {
     let dd = String(resultDate.getDate()).padStart(2, "0");
     let mm = String(resultDate.getMonth() + 1).padStart(2, "0");
     let yyyy = resultDate.getFullYear();
+    let catString = ""
+      if (result.categories !== null) {
+        let catArr = result.categories;
+        catString = catArr.join(", ")
+      }
     resultDate = yyyy + "-" + mm + "-" + dd;
     let publicStatus;
     result.status == "public" ? (publicStatus = true) : (publicStatus = false);
-    res.render("users/edit.hbs", { result, publicStatus, resultDate });
+    res.render("users/edit.hbs", { result, publicStatus, resultDate, catString });
   });
 });
 
