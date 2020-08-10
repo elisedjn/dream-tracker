@@ -45,7 +45,7 @@ hbs.registerPartials(__dirname + '/views/partials')
 const moment = require('moment'); 
 var DateFormats = {
   short: "DD MMM",
-  long: "dddd DD.MM.YYYY "
+  long: "dddd DD.MM.YYYY"
 };
 hbs.registerHelper("formatDate", function(datetime, format) {
     if (moment) {
