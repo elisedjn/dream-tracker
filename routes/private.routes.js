@@ -32,12 +32,14 @@ router.get("/record", (req, res) => {
   let mm = String(todayDate.getMonth() + 1).padStart(2, "0");
   let yyyy = todayDate.getFullYear();
   todayDate = yyyy + "-" + mm + "-" + dd;
-
+  
   res.render("users/record.hbs", {
     loggedInUser: req.session.loggedInUser,
     todayDate,
   });
 });
+
+
 // Post route for the text part of the form
 router.post("/record", (req, res) => {
   console.log("In the post record route");
@@ -55,6 +57,7 @@ router.post("/record", (req, res) => {
       res.render("users/record.hbs", { failed: true });
     });
 });
+
 
 // Post for the recording part (store it in cloudinary and in the db)
 router.post("/upload", uploader.single("audio_data"), (req, res, next) => {
@@ -109,6 +112,7 @@ router.post("/dreams", (req, res) => {
   });
 });
 
+
 // Edit dreams
 router.get("/dreams/:id/edit", (req, res, next) => {
   DreamModel.findById(req.params.id).then((result) => {
@@ -133,6 +137,7 @@ router.post("/dreams/:id/edit", (req, res, next) => {
     });
 });
 
+
 // Delete Dream
 router.post("/dreams/:id/delete", (req, res) => {
   DreamModel.findByIdAndDelete(req.params.id)
@@ -141,6 +146,7 @@ router.post("/dreams/:id/delete", (req, res) => {
       console.log(err);
     });
 });
+
 
 // Dream details
 router.get("/dreams/:id/details", (req, res, next) => {
@@ -152,6 +158,7 @@ router.get("/dreams/:id/details", (req, res, next) => {
     })
     .catch((err) => console.log(err));
 });
+
 
 // Public list of dreams
 router.get("/dreamFlow", (req, res) => {

@@ -84,42 +84,26 @@ function createDownloadLink(blob) {
   //add the filename to the li
   li.appendChild(document.createTextNode(filename));
 
-  // // XMLHTTP Request
-  //   var xhr=new XMLHttpRequest();
-  //   xhr.onload=function(e) {
-  //       if(this.readyState === 4) {
-  //           window.location.href="/dreams"
-  //       }
-  //   };
-  //   var fd=new FormData();
-  //   fd.append("audio_data",blob, filename);
-  //   xhr.open("POST","/upload",true);
-
-  //   let myBody = {
-  //     title: document.querySelector("#nameYourDream").value,
-  //     description: document.querySelector("#description").value,
-  //     date: document.querySelector("#date").value,
-  //     categories: ["Action"]
-  //   }
-
-  //   console.log(myBody)
-
-  //   fetch('/record', {
-  //     method: "POST",
-  //     body: JSON.stringify(myBody),
-  //     headers: {
-  //       'Content-type': 'application/json; charset=UTF-8'
-  //     }
-  //   })
-  //   .then(() => {
-  //     console.log("fetch done")
-  //     xhr.send(fd);
-  //   })
-  //   .catch((err) => console.log(err))
-
   //add the li element to the ul
   recordingsList.appendChild(li);
 }
+
+
+ 
+let btnsArr = document.querySelectorAll(".dropdown-item") 
+btnsArr.forEach (btn => {
+  btn.addEventListener("click", function(event) {
+    btn.classList.toggle("active");
+    // categories.forEach((elem, index) => {
+    //   if (elem == btn.value){
+    //     categories.splice(index, 1)
+    //   } else {
+    //     categories.push(btn.value)
+    //   }
+    // })
+})  
+}) 
+
 
 function sendData(blob) {
   var filename = new Date().toISOString();
@@ -133,12 +117,14 @@ function sendData(blob) {
   var fd = new FormData();
   fd.append("audio_data", blob, filename);
   xhr.open("POST", "/upload", true);
-
+  let activeBtns = document.querySelectorAll(".active")
+  let categories = [];
+  activeBtns.forEach(btn => categories.push(btn.value))
   let myBody = {
     title: document.querySelector("#nameYourDream").value,
     description: document.querySelector("#description").value,
     date: document.querySelector("#date").value,
-    categories: ["Action"],
+    categories: categories
   };
 
   console.log(myBody);
@@ -157,17 +143,19 @@ function sendData(blob) {
     .catch((err) => console.log(err));
 }
 
-// If record button is never clicked
 //upload linked to the submit button of the form
 upload = document.getElementById("submitBtn");
 upload.addEventListener("click", (event) => {
   if (typeof rec == "undefined") {
     // There is no recording
+    let activeBtns = document.querySelectorAll(".active")
+    let categories = [];
+    activeBtns.forEach(btn => categories.push(btn.value))
     let myBody = {
       title: document.querySelector("#nameYourDream").value,
       description: document.querySelector("#description").value,
       date: document.querySelector("#date").value,
-      categories: ["Action"],
+      categories: categories
     };
     fetch("/recordNoVoice", {
       method: "POST",
@@ -175,12 +163,12 @@ upload.addEventListener("click", (event) => {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
+    }) 
+    .then(() => {
+      console.log("no recording fetch done");
+      window.location.href = "/dreams";
     })
-      .then(() => {
-        console.log("no recording fetch done");
-        window.location.href = "/dreams";
-      })
-      .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
   } else {
     // There is a recording, we do all the xmlhttp and fetch logic
     rec.exportWAV(sendData);
