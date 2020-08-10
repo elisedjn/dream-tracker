@@ -44,9 +44,9 @@ router.get("/record", (req, res) => {
 router.post("/record", (req, res) => {
   console.log("In the post record route");
   console.log(req.body);
-  const { title, categories, description, date } = req.body;
+  const { title, categories, description, date, status } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, owner }, {$set: {title, categories, description, date, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       req.session.title = title;
@@ -85,9 +85,9 @@ router.post("/upload", uploader.single("audio_data"), (req, res, next) => {
 router.post("/recordNoVoice", (req, res) => {
   console.log("In the post record No Voice route");
   console.log(req.body);
-  const { title, categories, description, date } = req.body;
+  const { title, categories, description, date, status } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, owner }, {$set: {title, categories, description, date, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       res.redirect("/dreams")
@@ -106,21 +106,45 @@ router.get("/dreams", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-router.post("/dreams", (req, res) => {
-  DreamModel.find({ owner: req.session.loggedInUser._id }).then((result) => {
+
+router.get("/dreams/search", (req, res) => {
+  let {date, categories, status} = req.query
+  console.log(req.query)
+  let search = {};
+  search.owner = req.session.loggedInUser._id
+  if(date !== ""){
+    search.date = new Date(date);
+  }
+  if(categories !== ""){
+    search.categories = categories;
+  }
+  if(status !== ""){
+    search.status = status;
+  }
+  console.log(search)
+  DreamModel.find(search) //{date, status}
+  .then((result) => {
     res.render("users/dreams.hbs", { result });
-  });
+  })
+  .catch((err) => console.log(err));
 });
 
 
 // Edit dreams
 router.get("/dreams/:id/edit", (req, res, next) => {
   DreamModel.findById(req.params.id).then((result) => {
+    let resultDate = new Date(result.date);
+    let dd = String(resultDate.getDate()).padStart(2, "0");
+    let mm = String(resultDate.getMonth() + 1).padStart(2, "0");
+    let yyyy = resultDate.getFullYear();
+    resultDate = yyyy + "-" + mm + "-" + dd;
     let publicStatus;
     result.status == "public" ? (publicStatus = true) : (publicStatus = false);
-    res.render("users/edit.hbs", { result, publicStatus });
+    res.render("users/edit.hbs", { result, publicStatus, resultDate });
   });
 });
+
+
 router.post("/dreams/:id/edit", (req, res, next) => {
   console.log(req.body);
   let { title, categories, description, date, status } = req.body;

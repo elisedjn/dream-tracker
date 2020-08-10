@@ -12,25 +12,25 @@
     
 
      <div class="dropdown">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+       <div class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</div>
        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-         <button class="dropdown-item" value="{{fantastic}}">Fantasctic</button>
-         <button class="dropdown-item" >Super Powers</button>
-         <button class="dropdown-item" >Action</button>
-         <button class="dropdown-item" >Adventure</button>
-         <button class="dropdown-item" >Family</button>
-         <button class="dropdown-item" >Childhood</button>
-         <button class="dropdown-item" >Friends</button>
-         <button class="dropdown-item" >Funny</button>
-         <button class="dropdown-item" >Pets</button>
-         <button class="dropdown-item" >Job</button>
-         <button class="dropdown-item" >Drama</button>
-         <button class="dropdown-item" >Romance</button>
-         <button class="dropdown-item" >Celebrities</button>
-         <button class="dropdown-item" >XXX</button>
-         <button class="dropdown-item" >The Unknown</button>
-         <button class="dropdown-item" >Strangers</button>
-         <button class="dropdown-item" >Nightmare</button>
+         <input type="checkbox" class="dropdown-item" id = "fantastic" value="Fantastic"><label for="fantastic">Fantastic</label>
+         <input type="checkbox" class="dropdown-item" id = "superPowers" value="Super Powers"><label for="superPowers">Super Powers</label>
+         <input type="checkbox" class="dropdown-item" id = "action" value="Action"><label for="action">Action</label>
+         <input type="checkbox" class="dropdown-item" id = "adventure" value="Adventure"><label for="adventure">Adventure</label>
+         <input type="checkbox" class="dropdown-item" id = "family" value="Family"><label for="family">Family</label>
+         <input type="checkbox" class="dropdown-item" id = "childhood" value="Childhood"><label for="childhood">Childhood</label>
+         <input type="checkbox" class="dropdown-item" id = "friends" value="Friends"><label for="friends">Friends</label>
+         <input type="checkbox" class="dropdown-item" id = "funny" value="Funny"><label for="funny">Funny</label>
+         <input type="checkbox" class="dropdown-item" id = "pets" value="Pets"><label for="pets">Pets</label>
+         <input type="checkbox" class="dropdown-item" id = "job" value="Job"><label for="job">Job</label>
+         <input type="checkbox" class="dropdown-item" id = "drama" value="Drama"><label for="drama">Drama</label>
+         <input type="checkbox" class="dropdown-item" id = "romance" value="Romance"><label for="romance">Romance</label>
+         <input type="checkbox" class="dropdown-item" id = "celebrities" value="Celebrities"><label for="celebrities">Celebrities</label>
+         <input type="checkbox" class="dropdown-item" id = "xxx" value="XXX"><label for="xxx">XXX</label>
+         <input type="checkbox" class="dropdown-item" id = "theUnknow" value="The Unknown"><label for="theUnknow">The Unknown</label>
+         <input type="checkbox" class="dropdown-item" id = "strangers" value="Strangers"><label for="strangers">Strangers</label>
+         <input type="checkbox" class="dropdown-item" id = "nightmare" value="Nightmare"><label for="nightmare">Nightmare</label>
        </div>
      </div>
 
@@ -42,7 +42,7 @@
 
      <p class="words">Date</p>
      <div class="input-band">
-        <input id= "date" type="date" name="date" value="{{result.date}}">
+        <input id= "date" type="date" name="date" value="{{resultDate}}">
      </div>
 
      <div>

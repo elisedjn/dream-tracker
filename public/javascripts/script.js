@@ -124,7 +124,8 @@ function sendData(blob) {
     title: document.querySelector("#nameYourDream").value,
     description: document.querySelector("#description").value,
     date: document.querySelector("#date").value,
-    categories: categories
+    categories: categories,
+    status: "private"
   };
 
   console.log(myBody);
@@ -155,7 +156,8 @@ upload.addEventListener("click", (event) => {
       title: document.querySelector("#nameYourDream").value,
       description: document.querySelector("#description").value,
       date: document.querySelector("#date").value,
-      categories: categories
+      categories: categories,
+      status: "private"
     };
     fetch("/recordNoVoice", {
       method: "POST",
