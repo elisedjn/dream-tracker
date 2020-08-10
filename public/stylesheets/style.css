@@ -14,6 +14,17 @@ h1{
   /* font-family: 'Aclonica'; */
   font-weight: bolder;
   text-align: center;
+  padding-top: 10px;
+}
+
+#nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#navbarMenu {
+  justify-content: flex-end;
+
 }
 
 .white-card {
@@ -22,7 +33,7 @@ h1{
   margin: auto;
   border-radius: 5px;
   box-shadow: 0 5px 15px #193047;
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* HOME PAGE STYLING */
@@ -36,14 +47,22 @@ h1{
   justify-content: space-around;
   align-items: center;
 }
+
+/* #homaPage video{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+} */
 #homePage h1{
   font-size: 4.5rem;
+  /* position: fixed; */
 }
 #homePage .btns{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* position: fixed; */
 }
 
 .auth-btn {
@@ -80,6 +99,7 @@ h1{
   margin: auto;
   margin-top: 100px;
   padding: 50px 20px;
+  text-align: center;
 }
 
 #login form {
@@ -156,6 +176,7 @@ h1{
   padding: 10px;
   margin-top: 20px;
   width: 85%;
+  text-align: center;
 }
 /* Search Part */
 .search-card {
@@ -222,30 +243,12 @@ h1{
   display: block;
   width: 100%;
 }
-#nav {
-  display: flex;
-  justify-content: flex-end;
-}
 
-#navbarMenu {
-  justify-content: flex-end;
-
-}
-
-
-.titles {
-  color: white;
-  /* font-family: 'Milonga'; */
-  font-family: 'Megrim';
-  /* font-family: 'Aclonica'; */
-  font-weight: bolder;
-  text-align: center;
-  margin-top: 10px;
-
-}
+/* CREATE, EDIT and DETAILS */
 
 #record {
   background-image: linear-gradient(rgba(22,41,54,0.5), rgba(22,41,54,0.5)), url(../images/Bimg-JR01.jpg);
+  background-attachment: fixed;
   width: 100vw;
   height: 100vh;
   background-size: cover;

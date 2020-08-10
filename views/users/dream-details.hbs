@@ -23,11 +23,11 @@
     
     <p class="words">Date</p>
     <div>
-      <p class="input-band">{{result.date}}</p>
+      <p class="input-band">{{formatDate result.date "long"}}</p>
     </div>
 
     <div class="editAndDelete">
-      {{#if privateStatus}}
+      {{#if editable}}
       <a href="/dreams/{{result._id}}/edit"><button class="create-btn">Edit</button></a>
       <form method="POST" action="/dreams/{{result._id}}/delete">
       <button type="submit" class="create-btn">Delete</button>
