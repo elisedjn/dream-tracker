@@ -8,14 +8,13 @@
       <div class="search-col">
 
         <div class="input-band">
-          <label for="date">Date</label>
+          <label for="date">Date:</label>
           <input id="date" type="date" name="date" placeholder="">
         </div>
 
-        <div class="input-band">
-          <label for="categories">Categories</label>
-          <select name="categories" id="categories">
-            <option value="">--Please choose a categorie--</option>
+        <div class="organizer">
+           <select name="categories" id="categories">
+            <option value="">Select a category</option>
             <option value="Fantastic">Fantastic</option>
             <option value="Super Powers">Super Powers</option>
             <option value="Action">Action</option>
@@ -35,19 +34,15 @@
             <option value="Strangers">Strangers</option>
             <option value="Nightmare">Nightmare</option>
           </select>
+
+          <div class="search-radio">
+            <input id="public" type="radio" name="status" value="public" class="radio-btn">
+            <label for="public">Public</label>
+
+            <input id="private" type="radio" name="status" value="private" class="radio-btn">
+            <label for="private" class="entry">Private</label>
+          </div>
         </div>
-      </div>
-
-      <div class="search-col">
-
-        <div class="search-radio">
-          <input id="public" type="radio" name="status" value="public" class="radio-btn">
-          <label for="public">Public</label>
-
-          <input id="private" type="radio" name="status" value="private" class="radio-btn">
-          <label for="private" class="entry">Private</label>
-        </div>
-
       </div>
     </div>
 

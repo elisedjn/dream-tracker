@@ -15,8 +15,14 @@ var stopButton = document.getElementById("stopButton");
 //add events to those 3 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
+//Red light for recording
+var recordLight = document.querySelector(".led-box")
+recordLight.style.display = "none";
+
 
 function startRecording() {
+  //Record ligh ON
+  recordLight.style.display = "initial";
   console.log("recordButton clicked");
   var constraints = {
     audio: true,
@@ -56,6 +62,8 @@ function startRecording() {
 }
 
 function stopRecording() {
+  //Record light OFF
+  recordLight.style.display = "none";
   console.log("stopButton clicked");
   //disable the stop button, enable the record too allow for new recordings
   stopButton.disabled = true;

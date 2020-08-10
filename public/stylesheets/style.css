@@ -72,8 +72,9 @@ h1{
   padding: 10px 20px;
   font-size: 1.2rem;
   border-radius: 5px;
-  width: 300px;
+  width: 250px;
   box-shadow: 0 5px 15px #193047;
+  margin-top: 5px;
 }
 #homePage .btns a {
   margin-top: 30px;
@@ -285,7 +286,7 @@ h1{
 }
 
 .audio {
-  width: 260px;
+  width: 100%;
   height: 35px;
 }
 
@@ -299,5 +300,96 @@ h1{
   display: flex;
   justify-content: center;
 }
+
+#recordButton {
+  border-radius: 6px;
+  background-color: rgba(224, 222, 222, 0.795);
+}
+
+#stopButton {
+  border-radius: 6px;
+  background-color: rgba(224, 222, 222, 0.795);
+}
+
+#recordingsList {
+  width: 100%;
+  height: 35px;
+}
+
+.led-red {
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  -webkit-animation: blinkRed 2s infinite;
+  -moz-animation: blinkRed 2s infinite;
+  -ms-animation: blinkRed 2s infinite;
+  -o-animation: blinkRed 2s infinite;
+  animation: blinkRed 2s infinite;
+}
+
+@-webkit-keyframes blinkRed {
+  from { background-color: #F00; }
+  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+  to { background-color: #F00; }
+}
+@-moz-keyframes blinkRed {
+  from { background-color: #F00; }
+  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+  to { background-color: #F00; }
+}
+@-ms-keyframes blinkRed {
+  from { background-color: #F00; }
+  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+  to { background-color: #F00; }
+}
+@-o-keyframes blinkRed {
+  from { background-color: #F00; }
+  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+  to { background-color: #F00; }
+}
+@keyframes blinkRed {
+  from { background-color: #F00; }
+  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+  to { background-color: #F00; }
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+}
+
+.led-box {
+  margin-left: 10px;
+}
+#categories {
+  background-color: #c7cbcd;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  height: 35px;
+  text-align: center;
+
+}
+
+.organizer {
+  display: flex;
+  align-items: baseline;
+}
+
+#public {
+  margin-left: 15px;
+}
+
+#private {
+  margin-left: 5px;
+}
+
+
+
 
 
