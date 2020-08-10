@@ -94,6 +94,7 @@ function createDownloadLink(blob) {
       fd.append("audio_data",blob, filename);
       xhr.open("POST","/upload",true);
       
+
       let myBody = {
         title: document.querySelector("#nameYourDream").value,
         description: document.querySelector("#description").value,
