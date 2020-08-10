@@ -118,11 +118,11 @@ router.get("/dreams/search", (req, res) => {
   if(categories !== ""){
     search.categories = categories;
   }
-  if(status !== ""){
+  if(status !== undefined){
     search.status = status;
   }
   console.log(search)
-  DreamModel.find(search) //{date, status}
+  DreamModel.find(search)
   .then((result) => {
     res.render("users/dreams.hbs", { result });
   })
@@ -190,4 +190,25 @@ router.get("/dreamFlow", (req, res) => {
     res.render("users/dream-flow.hbs", { result });
   });
 });
+
+router.get("/dreamFlow/search", (req, res) => {
+  let {date, categories} = req.query
+  console.log(req.query)
+  let search = {};
+  search.status = "public"
+  if(date !== ""){
+    search.date = new Date(date);
+  }
+  if(categories !== ""){
+    search.categories = categories;
+  }
+  console.log(search)
+  DreamModel.find(search)
+  .then((result) => {
+    console.log(result)
+    res.render("users/dream-flow.hbs", { result });
+  })
+  .catch((err) => console.log(err));
+});
+
 module.exports = router;
