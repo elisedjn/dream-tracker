@@ -59,15 +59,17 @@
     {{#each result}}
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>
-      <a href="/dreams/{{this._id}}/details">
+      <a href="/dreams/{{this._id}}/details" class="dream-name">
         <h3>{{this.title}}</h3>
       </a>
 
+      <div class="icons-edit">
       <a href="/dreams/{{this._id}}/edit"><img src="/images/edit.png" alt="Edit"></a>
 
       <form method="POST" action="/dreams/{{this._id}}/delete">
         <button type="submit"><img src="/images/bin.png" alt="Delete"></button>
       </form>
+      </div>
     </div>
     {{/each}}
   </div>
