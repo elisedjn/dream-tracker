@@ -186,9 +186,14 @@ router.post("/dreams/:id/delete", (req, res) => {
 router.get("/dreams/:id/details", (req, res, next) => {
   DreamModel.findById(req.params.id)
     .then((result) => {
+      let catString = ""
+      if (result.categories !== null) {
+        let catArr = result.categories;
+        catString = catArr.join(", ")
+      }
       let editable;
       result.owner == req.session.loggedInUser._id ? (editable = true) : (editable = false);
-      res.render("users/dream-details.hbs", { result, editable });
+      res.render("users/dream-details.hbs", { result, editable, catString });
     })
     .catch((err) => console.log(err));
 });

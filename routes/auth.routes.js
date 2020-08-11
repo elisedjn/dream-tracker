@@ -68,11 +68,6 @@ router.post('/login', (req, res) => {
       });
 });
 
-//Logout
-router.get('/logout', (req, res) => {
-    req.session.destroy(() => res.redirect('/'))
-});
-
 
 // Logout
 router.get('/logout', (req, res) => {

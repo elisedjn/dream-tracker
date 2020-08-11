@@ -15,8 +15,14 @@ var stopButton = document.getElementById("stopButton");
 //add events to those 3 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
+//Red light for recording
+var recordLight = document.querySelector(".led-box")
+recordLight.style.display = "none";
+
 
 function startRecording() {
+  //Record ligh ON
+  recordLight.style.display = "initial";
   console.log("recordButton clicked");
   var constraints = {
     audio: true,
@@ -56,6 +62,8 @@ function startRecording() {
 }
 
 function stopRecording() {
+  //Record light OFF
+  recordLight.style.display = "none";
   console.log("stopButton clicked");
   //disable the stop button, enable the record too allow for new recordings
   stopButton.disabled = true;
@@ -69,7 +77,7 @@ function stopRecording() {
 function createDownloadLink(blob) {
   var url = URL.createObjectURL(blob);
   var au = document.createElement("audio");
-  var li = document.createElement("li");
+  var div = document.createElement("div");
 
   //name of .wav file to use during upload and download (without extendion)
   var filename = new Date().toISOString();
@@ -79,13 +87,10 @@ function createDownloadLink(blob) {
   au.src = url;
 
   //add the new audio element to li
-  li.appendChild(au);
-
-  //add the filename to the li
-  li.appendChild(document.createTextNode(filename));
+  div.appendChild(au);
 
   //add the li element to the ul
-  recordingsList.appendChild(li);
+  recordingsList.appendChild(div);
 }
 
 
@@ -94,13 +99,6 @@ let btnsArr = document.querySelectorAll(".dropdown-item")
 btnsArr.forEach (btn => {
   btn.addEventListener("click", function(event) {
     btn.classList.toggle("active");
-    // categories.forEach((elem, index) => {
-    //   if (elem == btn.value){
-    //     categories.splice(index, 1)
-    //   } else {
-    //     categories.push(btn.value)
-    //   }
-    // })
 })  
 }) 
 

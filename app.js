@@ -65,6 +65,7 @@ const MongoStore = require('connect-mongo')(session);
  
 app.use(session({
     secret: 'myDream',
+    name: 'dreamCookie',
     cookie: {
         maxAge: 60*60*24*1000 
     },
