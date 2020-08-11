@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/dream-tracker';
 
 mongoose
-  .connect('mongodb://localhost/dream-tracker', {
+  .connect(MONGODB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
