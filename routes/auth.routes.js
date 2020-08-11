@@ -36,7 +36,8 @@ router.post('/signup', (req, res) => {
               UserModel.create({username, email, passwordHash: hashPass})
                   .then(()=>{
                       res.redirect('/login')
-                  });
+                  })
+                  .catch((err) => res.status(500).render('auth/signup.hbs', {errorMessage: 'E-mail already in use. Choose another one or Log in'}))
           });
       });
 });
@@ -65,7 +66,8 @@ router.post('/login', (req, res) => {
           } else {
               res.status(500).render('auth/login.hbs', {errorMessage: 'Passwords do not match'})
           };
-      });
+      })
+      .catch((err) => res.status(500).render('auth/login.hbs', {errorMessage: 'User not found, please verify your email address'}))
 });
 
 

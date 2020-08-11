@@ -75,7 +75,11 @@ app.use(session({
     })
 }));
 
-
+// Clear the session
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -88,5 +92,7 @@ app.use('/', authRouter);
 
 const privateRouter = require('./routes/private.routes');
 app.use('/', privateRouter);
+
+
 
 module.exports = app;
