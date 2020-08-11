@@ -26,6 +26,7 @@ h1{
   width: 100%;
   display: flex;
   justify-content: space-around;
+  text-align: right;
 }
 
 .white-card {
@@ -426,6 +427,22 @@ h1{
 
 #private {
   margin-left: 5px;
+}
+
+.errorPath {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login {
+  text-align: center;
+  align-self: center;
+  font-size: large;
+}
+
+.errorMessage {
+  
 }
 
 
