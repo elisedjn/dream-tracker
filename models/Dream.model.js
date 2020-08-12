@@ -12,7 +12,7 @@ const DreamSchema = new Schema({
   description: String,
   categories: [{
     type: String,
-    enum: ["Fantastic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare"]
+    enum: ["Fantastic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Music", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare"]
   }],
   status: {
     type: String,
