@@ -136,7 +136,8 @@ function sendData(blob) {
   let activeBtns = document.querySelectorAll(".active")
   let categories = [];
   activeBtns.forEach(btn => categories.push(btn.value))
-  let languages = document.querySelector(".languageActive").value
+  let languages;
+  document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
   let myBody = {
     title: document.querySelector("#nameYourDream").value,
     description: document.querySelector("#description").value,
@@ -172,7 +173,8 @@ upload.addEventListener("click", (event) => {
     let activeBtns = document.querySelectorAll(".active")
     let categories = [];
     activeBtns.forEach(btn => categories.push(btn.value))
-    let languages = document.querySelector(".languageActive").value
+    let languages;
+  document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
     let myBody = {
       title: document.querySelector("#nameYourDream").value,
       description: document.querySelector("#description").value,

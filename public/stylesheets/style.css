@@ -242,8 +242,32 @@ h1{
   width: 100%;
 }
 
-/* Radio Buttons */
+/* Search queries box */
 
+.search-query ul{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0;
+  padding: 10px 0px 0px 0px;
+}
+
+.search-query li {
+  padding: 0px 5px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+.search-query button{
+  background-color: #152936;
+  color: white;
+  border: none;
+  padding: 2px 5px;
+  font-size: 0.7rem;
+  border-radius: 2px;
+  margin-top: 5px;
+}
 
 /* List Part */
 .one-dream {

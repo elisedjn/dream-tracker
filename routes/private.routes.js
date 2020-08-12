@@ -128,7 +128,10 @@ router.get("/dreams/search", (req, res) => {
     delete search.owner
     // We change the format of the date
     if(search.date) search.date = search.date.toLocaleDateString()
-    res.render("users/dreams.hbs", { result, search, madeSearch:true });
+    // if the result is empty, to show a message "No Result Found"
+    let noResult = false
+    if(result.length === 0) noResult = true;
+    res.render("users/dreams.hbs", { result, search, madeSearch:true , noResult });
   })
   .catch((err) => console.log(err));
 });
@@ -227,8 +230,14 @@ router.get("/dreamFlow/search", (req, res) => {
   console.log(search)
   DreamModel.find(search)
   .then((result) => {
-    console.log(result)
-    res.render("users/dream-flow.hbs", { result });
+    // We delete the status from the search object to pass it to the view
+    delete search.status
+    // We change the format of the date
+    if(search.date) search.date = search.date.toLocaleDateString()
+    // if the result is empty, to show a message "No Result Found"
+    let noResult = false
+    if(result.length === 0) noResult = true;
+    res.render("users/dream-flow.hbs", { result, search, madeSearch:true , noResult });
   })
   .catch((err) => console.log(err));
 });

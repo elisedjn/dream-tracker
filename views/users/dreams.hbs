@@ -2,8 +2,8 @@
   {{> nav this }}
 
   <h1>Your past dreams</h1>
-
-  <form method="GET" action="/dreams/search" class="white-card">
+<div class= "white-card">
+  <form method="GET" action="/dreams/search">
     <div class="search-card">
       <div class="search-col">
 
@@ -68,14 +68,21 @@
   </form>
 
 {{#if madeSearch}}
-<div class="white-card search-query">
+<div class="search-query">
+  <ul>
   {{#each search}}
-  {{@key}} : {{this}}
+  <li>{{this}}</li>
   {{/each}}
+  </ul>
+  <a href="/dreams"><button>Clear all</button></a> 
 </div>
 {{/if}}
+</div>
 
   <div class="white-card list-card">
+    {{#if noResult}}
+    <div class="error-msg"><img src="/images/star.png" alt="!!">No Result Found</div>
+    {{/if}}
     {{#each result}}
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>

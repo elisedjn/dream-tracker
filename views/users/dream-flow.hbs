@@ -3,8 +3,8 @@
 
   <h1>Dream Flow</h1>
   <div class="subtitle">Explore dreams from the community</div>
-
-  <form method="GET" action="/dreamFlow/search" class="white-card">
+<div class="white-card">
+  <form method="GET" action="/dreamFlow/search" >
     <div class="input-band">
           <label for="date">Date</label>
           <input id="date" type="date" name="date" placeholder="">
@@ -52,9 +52,23 @@
     <button type="submit" class="auth-btn">Search</button>
 
   </form>
+  {{#if madeSearch}}
+<div class="search-query">
+  <ul>
+  {{#each search}}
+  <li>{{this}}</li>
+  {{/each}}
+  </ul>
+  <a href="/dreamFlow"><button>Clear all</button></a> 
+</div>
+{{/if}}
+</div>
 
 
   <div class="white-card list-card">
+    {{#if noResult}}
+    <div class="error-msg"><img src="/images/star.png" alt="!!">No Result Found</div>
+    {{/if}}
     {{#each result}}
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>
