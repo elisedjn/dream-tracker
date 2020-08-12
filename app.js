@@ -75,7 +75,11 @@ app.use(session({
     })
 }));
 
-
+// Clear the session
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -86,7 +90,14 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
 
+// make the private routes private
+app.use((req, res, next) => {
+  req.session.loggedInUser ? next() : res.render('auth/login.hbs', {redirect: true});
+});
+
 const privateRouter = require('./routes/private.routes');
 app.use('/', privateRouter);
+
+
 
 module.exports = app;

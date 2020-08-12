@@ -12,7 +12,7 @@ const DreamSchema = new Schema({
   description: String,
   categories: [{
     type: String,
-    enum: ["Fantastic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare"]
+    enum: ["Fantastic", "Super Powers", "Action", "Adventure", "Family", "Childhood", "Friends", "Funny", "Pets", "Food", "Job", "Music", "Drama", "Romance", "Celebrities", "XXX", "The Unknown", "Strangers", "Nightmare"]
   }],
   status: {
     type: String,
@@ -23,7 +23,11 @@ const DreamSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'user'
-  }
+  },
+  languages: [{
+    type: String,
+    enum: ["EN", "FR", "ES", "DE", "PL", "IT", "NL", "CA", "PT", "SV", "RU", "HI"]
+  }]
 });
 
 

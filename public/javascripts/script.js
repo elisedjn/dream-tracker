@@ -95,11 +95,29 @@ function createDownloadLink(blob) {
 
 
  
-let btnsArr = document.querySelectorAll(".dropdown-item") 
+let btnsArr = document.querySelectorAll(".category") 
 btnsArr.forEach (btn => {
   btn.addEventListener("click", function(event) {
     btn.classList.toggle("active");
 })  
+}) 
+
+let btnsLanguage = document.querySelectorAll(".language")
+  let oneIsActive = false
+  let activeBtn;
+
+btnsLanguage.forEach (btn => {
+  btn.addEventListener("click", function(event) {
+    if (!oneIsActive){
+      btn.classList.add("languageActive");
+      oneIsActive = true
+      activeBtn = document.querySelector(".languageActive")
+    } else {
+      activeBtn.classList.remove("languageActive")
+      btn.classList.add("languageActive");
+      activeBtn = document.querySelector(".languageActive")
+    }  
+  })  
 }) 
 
 
@@ -118,12 +136,17 @@ function sendData(blob) {
   let activeBtns = document.querySelectorAll(".active")
   let categories = [];
   activeBtns.forEach(btn => categories.push(btn.value))
+  let languages;
+  document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
+  let title;
+  document.querySelector("#nameYourDream").value !== "" ? title = document.querySelector("#nameYourDream").value : title = "Name undefined";
   let myBody = {
-    title: document.querySelector("#nameYourDream").value,
+    title: title,
     description: document.querySelector("#description").value,
     date: document.querySelector("#date").value,
     categories: categories,
-    status: "private"
+    status: "private",
+    languages: languages
   };
 
   console.log(myBody);
@@ -144,18 +167,25 @@ function sendData(blob) {
 
 //upload linked to the submit button of the form
 upload = document.getElementById("submitBtn");
+loadingBtn = document.querySelector(".loading-gif");
 upload.addEventListener("click", (event) => {
+  loadingBtn.classList.remove("inactive");
   if (typeof rec == "undefined") {
     // There is no recording
     let activeBtns = document.querySelectorAll(".active")
     let categories = [];
     activeBtns.forEach(btn => categories.push(btn.value))
+    let languages;
+    document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
+    let title;
+    document.querySelector("#nameYourDream").value !== "" ? title = document.querySelector("#nameYourDream").value : title = "Name undefined";
     let myBody = {
-      title: document.querySelector("#nameYourDream").value,
+      title: title,
       description: document.querySelector("#description").value,
       date: document.querySelector("#date").value,
       categories: categories,
-      status: "private"
+      status: "private",
+      languages: languages
     };
     fetch("/recordNoVoice", {
       method: "POST",

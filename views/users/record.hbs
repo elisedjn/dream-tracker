@@ -2,7 +2,7 @@
  {{> nav this }}
  <h1 class="titles">Hello {{loggedInUser.username}}</h1>
   <div class="white-card">
-    <p class="words">Record a dream</p>
+    <p class="words">Record a dream (optional)</p>
     <div>
       <div id="controls">
         <button id="recordButton">Record</button>
@@ -15,40 +15,51 @@
       </div>
     <p class="words">Name your dream</p>
     <div class="input-band">
-      <input id="nameYourDream" type="text" name="title" placeholder="Give your dream a name">
+      <input id="nameYourDream" type="text" name="title" placeholder="Give your dream a name" required>
     </div>
 
       <p class="words">Categories</p>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select categories</button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Atmosphere</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-          <button class="dropdown-item" value="fantastic">Fantastic</button>
-          <button class="dropdown-item" value="Super Powers">Super Powers</button>
-          <button class="dropdown-item" value="Action">Action</button>
-          <button class="dropdown-item" value="Adventure">Adventure</button>
-          </div>
-          <button class="dropdown-toggle" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Topic</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
-          <button class="dropdown-item" value="Family">Family</button>
-          <button class="dropdown-item" value="Childhood">Childhood</button>
-          <button class="dropdown-item" value="Friends">Friends</button>
-          <button class="dropdown-item" value="Funny">Funny</button>
-          <button class="dropdown-item" value="Pets">Pets</button>
-          </div>
-          <button class="dropdown-toggle" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-dropeffect="popup">Characters</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu5">
-          <button class="dropdown-item" value="Job">Job</button>
-          <button class="dropdown-item" value="Drama">Drama</button>
-          <button class="dropdown-item" value="Romance">Romance</button>
-          <button class="dropdown-item" value="Celebrities">Celebrities</button>
-          <button class="dropdown-item" value="XXX">XXX</button>
-          <button class="dropdown-item" value="The Unknown">The Unknown</button>
-          <button class="dropdown-item" value="Strangers">Strangers</button>
-          <button class="dropdown-item" value="Nightmare">Nightmare</button>
-          </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">  
+          <button class="dropdown-item category" value="fantastic">Fantastic</button>
+          <button class="dropdown-item category" value="Super Powers">Super Powers</button>
+          <button class="dropdown-item category" value="Action">Action</button>
+          <button class="dropdown-item category" value="Adventure">Adventure</button> 
+          <button class="dropdown-item category" value="Family">Family</button>
+          <button class="dropdown-item category" value="Childhood">Childhood</button>
+          <button class="dropdown-item category" value="Friends">Friends</button>
+          <button class="dropdown-item category" value="Funny">Funny</button>
+          <button class="dropdown-item category" value="Pets">Pets</button>
+          <button class="dropdown-item category" value="Food">Food</button>
+          <button class="dropdown-item category" value="Job">Job</button>
+          <button class="dropdown-item category" value="Music">Music</button>
+          <button class="dropdown-item category" value="Drama">Drama</button>
+          <button class="dropdown-item category" value="Romance">Romance</button>
+          <button class="dropdown-item category" value="Celebrities">Celebrities</button>
+          <button class="dropdown-item category" value="XXX">XXX</button>
+          <button class="dropdown-item category" value="The Unknown">The Unknown</button>
+          <button class="dropdown-item category" value="Strangers">Strangers</button>
+          <button class="dropdown-item category" value="Nightmare">Nightmare</button>
+        </div>
+      </div>
 
+      <p class="words">Languages</p>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a language</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu3">  
+          <button class="dropdown-item language" value="EN">English</button>
+          <button class="dropdown-item language" value="FR">French</button>
+          <button class="dropdown-item language" value="ES">Spanish</button>
+          <button class="dropdown-item language" value="DE">German</button> 
+          <button class="dropdown-item language" value="PL">Polish</button>
+          <button class="dropdown-item language" value="IT">Italian</button>
+          <button class="dropdown-item language" value="NL">Dutch</button>
+          <button class="dropdown-item language" value="CA">Catalan</button>
+          <button class="dropdown-item language" value="PT">Portuguese</button>
+          <button class="dropdown-item language" value="SV">Swedish</button>
+          <button class="dropdown-item language" value="RU">Russian</button>
+          <button class="dropdown-item language" value="HI">Hindi</button>
         </div>
       </div>
 
@@ -62,9 +73,15 @@
         <input id= "date" type="date" name="date" value="{{todayDate}}">
       </div>
 
+      <p class = "info-msg"><img src="/images/star.png" alt="!!">By default, this dream is private. <br/> After creating it, you can share it to the Dream Flow by editing it to make it public.</p>
+      
+      <div class="loading-gif inactive"><img src="/images/25.gif" alt="Loading..."></div>
+
       <div class="edit-btn">
         <button class="create-btn no-record" id="submitBtn">Create</button> 
       </div>
+
+      
 
       
   </div>

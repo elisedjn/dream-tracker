@@ -7,11 +7,14 @@
     
     
     <p class="words">Categories</p>
-      <div class="input-band">{{catString}}</div>
+      <div class="input-band">{{#if catString}} {{catString}} {{else}} <span class="italic">No category defined</span> {{/if}}</div>
+
+    <p class="words">Language</p>
+      <div class="input-band">{{#if result.language}} {{result.language}} {{else}} <span class="italic">No language defined</span> {{/if}}</div>
 
     <p class="words">Description</p>
     <div class="input-band">
-      <p>{{result.description}}</p>
+      <p>{{#if result.description}} {{result.description}} {{else}} <span class="italic">No description inserted</span> {{/if}}</p>
     </div>
 
     <p class="words">Status</p>

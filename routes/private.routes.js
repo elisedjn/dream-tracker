@@ -33,10 +33,7 @@ router.get("/record", (req, res) => {
   let yyyy = todayDate.getFullYear();
   todayDate = yyyy + "-" + mm + "-" + dd;
   
-  res.render("users/record.hbs", {
-    loggedInUser: req.session.loggedInUser,
-    todayDate,
-  });
+  res.render("users/record.hbs", {loggedInUser: req.session.loggedInUser,todayDate} );
 });
 
 
@@ -44,9 +41,9 @@ router.get("/record", (req, res) => {
 router.post("/record", (req, res) => {
   console.log("In the post record route");
   console.log(req.body);
-  const { title, categories, description, date, status } = req.body;
+  const { title, categories, description, date, status, languages } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner, languages }, {$set: {title, categories, description, date, status, owner, languages}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       req.session.title = title;
@@ -85,9 +82,9 @@ router.post("/upload", uploader.single("audio_data"), (req, res, next) => {
 router.post("/recordNoVoice", (req, res) => {
   console.log("In the post record No Voice route");
   console.log(req.body);
-  const { title, categories, description, date, status } = req.body;
+  const { title, categories, description, date, status, languages } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner, languages }, {$set: {title, categories, description, date, status, owner, languages}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       res.redirect("/dreams")
@@ -108,7 +105,7 @@ router.get("/dreams", (req, res) => {
 });
 
 router.get("/dreams/search", (req, res) => {
-  let {date, categories, status} = req.query
+  let {date, categories, status, languages} = req.query
   console.log(req.query)
   let search = {};
   search.owner = req.session.loggedInUser._id
@@ -121,10 +118,20 @@ router.get("/dreams/search", (req, res) => {
   if(status !== undefined){
     search.status = status;
   }
+  if(languages !== undefined && languages !== ""){
+    search.languages = languages;
+  }
   console.log(search)
   DreamModel.find(search)
   .then((result) => {
-    res.render("users/dreams.hbs", { result });
+    // We delete the owner from the search object to pass it to the view
+    delete search.owner
+    // We change the format of the date
+    if(search.date) search.date = search.date.toLocaleDateString()
+    // if the result is empty, to show a message "No Result Found"
+    let noResult = false
+    if(result.length === 0) noResult = true;
+    res.render("users/dreams.hbs", { result, search, madeSearch:true , noResult });
   })
   .catch((err) => console.log(err));
 });
@@ -142,23 +149,27 @@ router.get("/dreams/:id/edit", (req, res, next) => {
         let catArr = result.categories;
         catString = catArr.join(", ")
       }
+      
     resultDate = yyyy + "-" + mm + "-" + dd;
     let publicStatus;
     result.status == "public" ? (publicStatus = true) : (publicStatus = false);
-    res.render("users/edit.hbs", { result, publicStatus, resultDate, catString });
+    res.render("users/edit.hbs", { result, publicStatus, resultDate, catString});
   });
 });
 
 
 router.post("/dreams/:id/edit", (req, res, next) => {
   console.log(req.body);
-  let { title, categories, description, date, status } = req.body;
+  let { title, categories, description, date, status, languages } = req.body;
   let update = {title, description, date};
   if(categories !== undefined){
     update.categories = categories;
   }
   if(status !== undefined){
     update.status = status;
+  }
+  if(languages !== undefined && languages !== ""){
+    update.languages = languages;
   }
   let dreamId = req.params.id;
   DreamModel.findByIdAndUpdate(dreamId, {$set: update})
@@ -207,7 +218,7 @@ router.get("/dreamFlow", (req, res) => {
 });
 
 router.get("/dreamFlow/search", (req, res) => {
-  let {date, categories} = req.query
+  let {date, categories, languages} = req.query
   console.log(req.query)
   let search = {};
   search.status = "public"
@@ -217,13 +228,24 @@ router.get("/dreamFlow/search", (req, res) => {
   if(categories !== ""){
     search.categories = categories;
   }
+  if(languages !== undefined && languages !== ""){
+    search.languages = languages;
+  }
   console.log(search)
   DreamModel.find(search)
   .then((result) => {
-    console.log(result)
-    res.render("users/dream-flow.hbs", { result });
+    // We delete the status from the search object to pass it to the view
+    delete search.status
+    // We change the format of the date
+    if(search.date) search.date = search.date.toLocaleDateString()
+    // if the result is empty, to show a message "No Result Found"
+    let noResult = false
+    if(result.length === 0) noResult = true;
+    res.render("users/dream-flow.hbs", { result, search, madeSearch:true , noResult });
   })
   .catch((err) => console.log(err));
 });
+
+
 
 module.exports = router;

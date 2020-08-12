@@ -2,8 +2,9 @@
 {{> nav this }}
 
   <h1>Dream Flow</h1>
-
-  <form method="GET" action="/dreamFlow/search" class="white-card">
+  <div class="subtitle">Explore dreams from the community</div>
+<div class="white-card">
+  <form method="GET" action="/dreamFlow/search" >
     <div class="input-band">
           <label for="date">Date</label>
           <input id="date" type="date" name="date" placeholder="">
@@ -23,6 +24,7 @@
             <option value="Pets">Pets</option>
             <option value="Food">Food</option>
             <option value="Job">Job</option>
+            <option value="Music">Music</option>
             <option value="Drama">Drama</option>
             <option value="Romance">Romance</option>
             <option value="Celebrities">Celebrities</option>
@@ -31,16 +33,47 @@
             <option value="Strangers">Strangers</option>
             <option value="Nightmare">Nightmare</option>
           </select>
+
+           <select name="languages" id="languages">
+            <option value="">Select a language</option>
+            <option value="EN">English</option>
+            <option value="FR">French</option>
+            <option value="ES">Spanish</option>
+            <option value="DE">German</option>
+            <option value="PL">Polish</option>
+            <option value="IT">Italian</option>
+            <option value="NL">Dutch</option>
+            <option value="CA">Catalan</option>
+            <option value="PT">Portuguese</option>
+            <option value="SV">Swedish</option>
+            <option value="RU">Russian</option>
+            <option value="HI">Hindi</option>
+          </select>
        
     <button type="submit" class="auth-btn">Search</button>
 
   </form>
+  {{#if madeSearch}}
+<div class="search-query">
+  <ul>
+  {{#each search}}
+  <li>{{this}}</li>
+  {{/each}}
+  </ul>
+  <a href="/dreamFlow"><button>Clear all</button></a> 
+</div>
+{{/if}}
+</div>
 
 
   <div class="white-card list-card">
+    {{#if noResult}}
+    <div class="error-msg"><img src="/images/star.png" alt="!!">No Result Found</div>
+    {{/if}}
     {{#each result}}
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>
+      <div class="date">{{this.languages}}</div>
       <a href="/dreams/{{this._id}}/details">
         <h3>{{this.title}}</h3>
       </a>
