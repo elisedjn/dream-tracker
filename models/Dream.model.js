@@ -24,7 +24,7 @@ const DreamSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  lenguages: [{
+  languages: [{
     type: String,
     enum: ["EN", "FR", "ES", "DE", "PL", "IT", "NL", "CA", "PT", "SV", "RU", "HI"]
   }]

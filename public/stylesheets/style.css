@@ -404,7 +404,7 @@ h1{
 .led-box {
   margin-left: 10px;
 }
-#categories {
+#categories, #languages {
   background-color: #c7cbcd;
   border-radius: 5px;
   padding: 6px 10px;

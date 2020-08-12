@@ -95,11 +95,29 @@ function createDownloadLink(blob) {
 
 
  
-let btnsArr = document.querySelectorAll(".dropdown-item") 
+let btnsArr = document.querySelectorAll(".category") 
 btnsArr.forEach (btn => {
   btn.addEventListener("click", function(event) {
     btn.classList.toggle("active");
 })  
+}) 
+
+let btnsLanguage = document.querySelectorAll(".language")
+  let oneIsActive = false
+  let activeBtn;
+
+btnsLanguage.forEach (btn => {
+  btn.addEventListener("click", function(event) {
+    if (!oneIsActive){
+      btn.classList.add("languageActive");
+      oneIsActive = true
+      activeBtn = document.querySelector(".languageActive")
+    } else {
+      activeBtn.classList.remove(".languageActive")
+      btn.classList.add("languageActive");
+      activeBtn = document.querySelector(".languageActive")
+    }  
+  })  
 }) 
 
 
@@ -118,12 +136,14 @@ function sendData(blob) {
   let activeBtns = document.querySelectorAll(".active")
   let categories = [];
   activeBtns.forEach(btn => categories.push(btn.value))
+  let languages = document.querySelector(".languageActive").value
   let myBody = {
     title: document.querySelector("#nameYourDream").value,
     description: document.querySelector("#description").value,
     date: document.querySelector("#date").value,
     categories: categories,
-    status: "private"
+    status: "private",
+    languages: languages
   };
 
   console.log(myBody);
@@ -150,12 +170,14 @@ upload.addEventListener("click", (event) => {
     let activeBtns = document.querySelectorAll(".active")
     let categories = [];
     activeBtns.forEach(btn => categories.push(btn.value))
+    let languages = document.querySelector(".languageActive").value
     let myBody = {
       title: document.querySelector("#nameYourDream").value,
       description: document.querySelector("#description").value,
       date: document.querySelector("#date").value,
       categories: categories,
-      status: "private"
+      status: "private",
+      languages: languages
     };
     fetch("/recordNoVoice", {
       method: "POST",
