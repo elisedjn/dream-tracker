@@ -13,6 +13,9 @@
             {{#if errorMessage}}
             <div class="error-msg"><img src="/images/star.png" alt="!!">{{errorMessage}}</div>
             {{/if}}
+            {{#if redirect}}
+            <div class="error-msg"><img src="/images/star.png" alt="!!">Please login to access Dream Tracker</div>
+            {{/if}}
             <div>
                 <button class="auth-btn" type="submit">Log In!</button>
                 <p>Not a member yet? <br /> <a href="/signup">Sign Up</a></p>

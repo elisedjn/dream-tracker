@@ -90,6 +90,11 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
 
+// make the private routes private
+app.use((req, res, next) => {
+  req.session.loggedInUser ? next() : res.render('auth/login.hbs', {redirect: true});
+});
+
 const privateRouter = require('./routes/private.routes');
 app.use('/', privateRouter);
 
