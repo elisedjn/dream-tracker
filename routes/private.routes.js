@@ -142,23 +142,27 @@ router.get("/dreams/:id/edit", (req, res, next) => {
         let catArr = result.categories;
         catString = catArr.join(", ")
       }
+      
     resultDate = yyyy + "-" + mm + "-" + dd;
     let publicStatus;
     result.status == "public" ? (publicStatus = true) : (publicStatus = false);
-    res.render("users/edit.hbs", { result, publicStatus, resultDate, catString });
+    res.render("users/edit.hbs", { result, publicStatus, resultDate, catString});
   });
 });
 
 
 router.post("/dreams/:id/edit", (req, res, next) => {
   console.log(req.body);
-  let { title, categories, description, date, status } = req.body;
+  let { title, categories, description, date, status, languages } = req.body;
   let update = {title, description, date};
   if(categories !== undefined){
     update.categories = categories;
   }
   if(status !== undefined){
     update.status = status;
+  }
+  if(languages !== undefined && languages !== ""){
+    update.languages = languages;
   }
   let dreamId = req.params.id;
   DreamModel.findByIdAndUpdate(dreamId, {$set: update})
@@ -228,5 +232,7 @@ router.get("/dreamFlow/search", (req, res) => {
   })
   .catch((err) => console.log(err));
 });
+
+
 
 module.exports = router;

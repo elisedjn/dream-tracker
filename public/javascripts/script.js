@@ -113,7 +113,7 @@ btnsLanguage.forEach (btn => {
       oneIsActive = true
       activeBtn = document.querySelector(".languageActive")
     } else {
-      activeBtn.classList.remove(".languageActive")
+      activeBtn.classList.remove("languageActive")
       btn.classList.add("languageActive");
       activeBtn = document.querySelector(".languageActive")
     }  
@@ -136,9 +136,12 @@ function sendData(blob) {
   let activeBtns = document.querySelectorAll(".active")
   let categories = [];
   activeBtns.forEach(btn => categories.push(btn.value))
-  let languages = document.querySelector(".languageActive").value
+  let languages;
+  document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
+  let title;
+  document.querySelector("#nameYourDream").value !== "" ? title = document.querySelector("#nameYourDream").value : title = "Name undefined";
   let myBody = {
-    title: document.querySelector("#nameYourDream").value,
+    title: title,
     description: document.querySelector("#description").value,
     date: document.querySelector("#date").value,
     categories: categories,
@@ -170,9 +173,12 @@ upload.addEventListener("click", (event) => {
     let activeBtns = document.querySelectorAll(".active")
     let categories = [];
     activeBtns.forEach(btn => categories.push(btn.value))
-    let languages = document.querySelector(".languageActive").value
+    let languages;
+    document.querySelector(".languageActive")? languages = document.querySelector(".languageActive").value : languages = undefined;
+    let title;
+    document.querySelector("#nameYourDream").value !== "" ? title = document.querySelector("#nameYourDream").value : title = "Name undefined";
     let myBody = {
-      title: document.querySelector("#nameYourDream").value,
+      title: title,
       description: document.querySelector("#description").value,
       date: document.querySelector("#date").value,
       categories: categories,

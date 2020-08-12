@@ -127,6 +127,7 @@ h1{
   margin-bottom: 10px;
   display: flex;
   align-items: baseline;
+  min-height: 35px;
 }
 
 .input-band input {
@@ -439,6 +440,7 @@ h1{
 .organizer {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
 }
 
 #public {
@@ -700,6 +702,22 @@ h1{
         padding-top: 25%;
     }
 }
+
+.italic {
+  font-style: italic;
+  color: grey;
+  padding-left: 10px;
+}
+
+#description::placeholder {
+  font-style: italic;
+}
+
+.languageActive {
+  background-color: #007BFF;
+  color: white;
+}
+
 
 
 
