@@ -532,7 +532,7 @@ h1{
 }
 
 .bg-purple{
-    background: url(http://salehriaz.com/404Page/img/bg_purple.png);
+    background: url(https://wallpapercave.com/wp/HeYmP7w.png);
     background-repeat: repeat-y;
     background-size: cover;
     background-position: center;
@@ -614,14 +614,6 @@ h1{
     position: absolute;
     top: 12%;
     left: 25%;
-/*
-    transform: rotate(0deg);
-    transition: transform ease-in 99999999999s;
-*/
-}
-
-.earth-moon{
-    
 }
 
 .object_astronaut{
