@@ -33,10 +33,7 @@ router.get("/record", (req, res) => {
   let yyyy = todayDate.getFullYear();
   todayDate = yyyy + "-" + mm + "-" + dd;
   
-  res.render("users/record.hbs", {
-    loggedInUser: req.session.loggedInUser,
-    todayDate,
-  });
+  res.render("users/record.hbs", {loggedInUser: req.session.loggedInUser,todayDate} );
 });
 
 
@@ -44,9 +41,9 @@ router.get("/record", (req, res) => {
 router.post("/record", (req, res) => {
   console.log("In the post record route");
   console.log(req.body);
-  const { title, categories, description, date, status } = req.body;
+  const { title, categories, description, date, status, lenguages } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner, lenguages }, {$set: {title, categories, description, date, status, owner, lenguages}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       req.session.title = title;
@@ -85,9 +82,9 @@ router.post("/upload", uploader.single("audio_data"), (req, res, next) => {
 router.post("/recordNoVoice", (req, res) => {
   console.log("In the post record No Voice route");
   console.log(req.body);
-  const { title, categories, description, date, status } = req.body;
+  const { title, categories, description, date, status, lenguages } = req.body;
   const owner = req.session.loggedInUser._id;
-  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner }, {$set: {title, categories, description, date, status, owner}}, {upsert: true}) //upsert will create the document if it's not there
+  DreamModel.findOneAndUpdate({ title, categories, description, date, status, owner, lenguages }, {$set: {title, categories, description, date, status, owner, lenguages}}, {upsert: true}) //upsert will create the document if it's not there
     .then(() => {
       console.log("Dream created");
       res.redirect("/dreams")
