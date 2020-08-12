@@ -124,7 +124,11 @@ router.get("/dreams/search", (req, res) => {
   console.log(search)
   DreamModel.find(search)
   .then((result) => {
-    res.render("users/dreams.hbs", { result });
+    // We delete the owner from the search object to pass it to the view
+    delete search.owner
+    // We change the format of the date
+    if(search.date) search.date = search.date.toLocaleDateString()
+    res.render("users/dreams.hbs", { result, search, madeSearch:true });
   })
   .catch((err) => console.log(err));
 });

@@ -67,6 +67,14 @@
 
   </form>
 
+{{#if madeSearch}}
+<div class="white-card search-query">
+  {{#each search}}
+  {{@key}} : {{this}}
+  {{/each}}
+</div>
+{{/if}}
+
   <div class="white-card list-card">
     {{#each result}}
     <div class="one-dream">

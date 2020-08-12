@@ -42,8 +42,8 @@ h1{
 #homePage {
   width: 100vw;
   height: 100vh;
-  /* background-image: url(../images/bg01.jpg);
-  background-size: cover; */
+  background-image: url(../images/bg01.jpg);
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -313,6 +313,16 @@ h1{
   text-align: left;
   font-size: 0.9rem;
   padding-left: 20px;
+}
+
+.inactive {
+  display: none;
+}
+
+.loading-gif{
+  text-align: center;
+  position: absolute;
+  left: 40%;
 }
 
 .show{

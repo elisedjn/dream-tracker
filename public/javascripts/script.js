@@ -164,7 +164,9 @@ function sendData(blob) {
 
 //upload linked to the submit button of the form
 upload = document.getElementById("submitBtn");
+loadingBtn = document.querySelector(".loading-gif");
 upload.addEventListener("click", (event) => {
+  loadingBtn.classList.remove("inactive");
   if (typeof rec == "undefined") {
     // There is no recording
     let activeBtns = document.querySelectorAll(".active")
