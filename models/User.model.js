@@ -13,7 +13,11 @@ const UserSchema = new Schema({
   passwordHash: {
     type: String,
     required: true
-  }
+  },
+  likedDreams: [{
+    type: Schema.Types.ObjectId,
+    ref: 'dream'
+  }]
   },
   {
     timestamps: true

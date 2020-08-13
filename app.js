@@ -58,7 +58,6 @@ hbs.registerHelper("formatDate", function(datetime, format) {
   });
 
 
-
 // cookies and sessions
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);

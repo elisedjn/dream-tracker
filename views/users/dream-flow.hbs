@@ -77,6 +77,14 @@
       <a href="/dreams/{{this._id}}/details">
         <h3>{{this.title}}</h3>
       </a>
+      <form method="POST" action="/dreamFlow/{{this._id}}/{{this.likes}}" id="likesCount">
+      {{#if (isIncluded this._id) }}
+      <button class="starBtn"><img src="/images/star-filled.png"></button>
+      {{else}}
+      <button class="starBtn"><img src="/images/star-empty.png"></button>
+      {{/if}}
+      <p>{{this.likes}}</p>
+      </form>
     </div>
     {{/each}}
   </div>

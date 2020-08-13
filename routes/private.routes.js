@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const UserModel = require("../models/User.model.js");
 const DreamModel = require("../models/Dream.model.js");
+const hbs          = require('hbs');
 //Configuration for Cloudinary and Recording
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
@@ -212,10 +213,42 @@ router.get("/dreams/:id/details", (req, res, next) => {
 
 // Public list of dreams
 router.get("/dreamFlow", (req, res) => {
-  DreamModel.find({ status: "public" }).then((result) => {
-    res.render("users/dream-flow.hbs", { result });
-  });
+  UserModel.findById(req.session.loggedInUser._id)
+    .then((result) => {
+      let dreamsLiked = result.likedDreams
+      hbs.registerHelper("isIncluded", (dream) => {
+        return dreamsLiked.includes(dream._id)
+      })
+      DreamModel.find({ status: "public" })
+        .then((result) => {
+          res.render("users/dream-flow.hbs", { result });
+      })
+    })
 });
+
+router.post("/dreamFlow/:id/:likes", (req, res) => {
+  UserModel.findById(req.session.loggedInUser._id)
+    .then((result) => {
+      let newLikes;
+      let newLikedList = result.likedDreams
+      if (newLikedList.includes(req.params.id)){
+        newLikes = Number(req.params.likes) - 1
+        let index = newLikedList.indexOf(req.params.id)
+        newLikedList.splice(index,1)
+      } else {
+        newLikes = Number(req.params.likes) + 1
+        newLikedList.push(req.params.id)
+      }
+      DreamModel.findByIdAndUpdate(req.params.id, {$set: {likes: newLikes}})
+        .then(() => {
+        UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {$set: {likedDreams: newLikedList}})
+          .then(() => res.redirect("/dreamFlow"))
+          .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err))
+    })
+  
+})
 
 router.get("/dreamFlow/search", (req, res) => {
   let {date, categories, languages} = req.query
