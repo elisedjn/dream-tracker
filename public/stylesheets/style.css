@@ -351,7 +351,7 @@ h1{
 }
 
 .show{
-  width: 200px;
+  width: 100%;
   text-align: left;
 }
 
@@ -743,6 +743,11 @@ h1{
   padding-left: 10px;
 }
 
+#description{
+  width: 100%;
+  border: none;
+}
+
 #description::placeholder {
   font-style: italic;
 }
@@ -752,6 +757,8 @@ h1{
   color: white;
 }
 
-
+#likesCount .activeStar{
+  background-color: red;
+}
 
 

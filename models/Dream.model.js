@@ -27,7 +27,11 @@ const DreamSchema = new Schema({
   languages: [{
     type: String,
     enum: ["EN", "FR", "ES", "DE", "PL", "IT", "NL", "CA", "PT", "SV", "RU", "HI"]
-  }]
+  }],
+  likes: {
+    type: Number,
+    default: 0
+  }
 });
 
 
