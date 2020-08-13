@@ -140,13 +140,35 @@ router.get("/dreams/search", (req, res) => {
   if (languages !== undefined && languages !== "") {
     search.languages = languages;
   }
+
+  let sorting;
+
+  switch (req.query.SortBy) {
+    case "mostLiked":
+      sorting = {likes: -1}
+      break;
+    case "leastLiked":
+      sorting = {likes: 1}
+      break;
+    case "newest":
+      sorting = {date: -1}
+      break;
+    case "oldest":
+      sorting = {date: 1}
+      break;  
+  }
+
   console.log(search);
-  DreamModel.find(search)
+  DreamModel.find(search).sort(sorting)
     .then((result) => {
       // We delete the owner from the search object to pass it to the view
       delete search.owner;
       // We change the format of the date
       if (search.date) search.date = search.date.toLocaleDateString();
+      // We add the sorting
+      if (req.query.SortBy !== "" && req.query.SortBy !== undefined){
+        search.SortBy = req.query.SortBy
+      }
       // if the result is empty, to show a message "No Result Found"
       let noResult = false;
       if (result.length === 0) noResult = true;
@@ -231,7 +253,9 @@ router.get("/dreams/:id/details", (req, res, next) => {
       result.owner == req.session.loggedInUser._id
         ? (editable = true)
         : (editable = false);
-      res.render("users/dream-details.hbs", { result, editable, catString });
+      let isPublic;
+      result.status == "public" ? isPublic = true : isPublic = false;
+      res.render("users/dream-details.hbs", { result, editable, catString, isPublic });
     })
     .catch((err) => console.log(err));
 });
@@ -317,6 +341,10 @@ router.get("/dreamFlow/search", (req, res) => {
         delete search._id;
         // We change the format of the date
         if (search.date) search.date = search.date.toLocaleDateString();
+        // We add the sorting
+        if (req.query.SortBy !== "" && req.query.SortBy !== undefined){
+          search.SortBy = req.query.SortBy
+        }
         // if the result is empty, to show a message "No Result Found"
         let noResult = false;
         if (result.length === 0) noResult = true;
@@ -332,6 +360,10 @@ router.get("/dreamFlow/search", (req, res) => {
         delete search.status;
         // We change the format of the date
         if (search.date) search.date = search.date.toLocaleDateString();
+        // We add the sorting
+        if (req.query.SortBy !== "" && req.query.SortBy !== undefined){
+          search.SortBy = req.query.SortBy
+        }
         // if the result is empty, to show a message "No Result Found"
         let noResult = false;
         if (result.length === 0) noResult = true;
