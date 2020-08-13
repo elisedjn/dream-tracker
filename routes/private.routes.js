@@ -251,7 +251,7 @@ router.post("/dreamFlow/:id/:likes", (req, res) => {
 })
 
 router.get("/dreamFlow/search", (req, res) => {
-  let {date, categories, languages} = req.query
+  let {date, categories, languages, likedDreams} = req.query
   console.log(req.query)
   let search = {};
   search.status = "public"
@@ -263,6 +263,9 @@ router.get("/dreamFlow/search", (req, res) => {
   }
   if(languages !== undefined && languages !== ""){
     search.languages = languages;
+  }
+  if(likedDreams !== ""){
+    search.likedDreams = likedDreams;
   }
   console.log(search)
   DreamModel.find(search)
