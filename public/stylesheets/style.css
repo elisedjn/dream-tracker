@@ -757,8 +757,22 @@ h1{
   color: white;
 }
 
-#likesCount .activeStar{
-  background-color: red;
+#likesCount{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+#likesCount p{
+  margin-bottom: 0;
+}
 
+.starBtn {
+  text-align: center;
+}
+
+.starBtn img {
+  width: 25px;
+  height: 25px;
+}
