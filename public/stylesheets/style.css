@@ -776,3 +776,12 @@ h1{
   width: 25px;
   height: 25px;
 }
+
+.likeStar{
+  margin-right: 5px;
+}
+
+.likeStar img {
+  width:20px;
+  height: 20px;
+}

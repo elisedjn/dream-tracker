@@ -91,10 +91,19 @@
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>
       <div class="date">{{this.languages}}</div>
+      <div class="likeStar">
+      {{#if (isPublic this)}}
+        {{#if (isLiked this)}}
+          <img src="/images/star-filled.png" alt="Likes">
+        {{else}}
+          <img src="/images/star-empty.png" alt="Likes">
+        {{/if}}
+      {{this.likes}}
+      {{/if}}
+      </div>
       <a href="/dreams/{{this._id}}/details" class="dream-name">
         <h3>{{this.title}}</h3>
       </a>
-
       <div class="icons-edit">
       <a href="/dreams/{{this._id}}/edit"><img src="/images/edit.png" alt="Edit"></a>
 
