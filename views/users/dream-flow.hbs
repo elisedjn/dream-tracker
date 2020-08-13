@@ -5,12 +5,14 @@
   <div class="subtitle">Explore dreams from the community</div>
 <div class="white-card">
   <form method="GET" action="/dreamFlow/search" >
+      <div class="search-card">
+      <div class="search-col">
     <div class="input-band">
           <label for="date">Date</label>
           <input id="date" type="date" name="date" placeholder="">
         </div>
 
-        
+        <div class="organizer">
           <select name="categories" id="categories">
             <option value="">Select a category</option>
             <option value="Fantastic">Fantastic</option>
@@ -34,6 +36,13 @@
             <option value="Nightmare">Nightmare</option>
           </select>
 
+          <div class="search-radio">
+            <input id="likedDreams" type="checkbox" name="likedDreams" value="my likes" class="radio-btn">
+            <label for="likedDreams">My likes</label>
+          </div>
+        </div>
+      
+        <div class="organizer">
            <select name="languages" id="languages">
             <option value="">Select a language</option>
             <option value="EN">English</option>
@@ -49,10 +58,24 @@
             <option value="RU">Russian</option>
             <option value="HI">Hindi</option>
           </select>
+
+           <select name="SortBy" id="sortBy">
+            <option value="">Sort by</option>
+            <option value="mostLiked">Likes(most liked)</option>
+            <option value="leastLiked">Likes(least liked)</option>
+             <option value="newest">Date(newest)</option>
+            <option value="oldest">Date(oldest)</option>
+          </select>
+        </div>
+        
+
+          </div>
+        </div>
        
     <button type="submit" class="auth-btn">Search</button>
 
   </form>
+
   {{#if madeSearch}}
 <div class="search-query">
   <ul>

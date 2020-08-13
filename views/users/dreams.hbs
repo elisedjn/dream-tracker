@@ -39,6 +39,8 @@
           <div class="search-radio">
             <input id="public" type="radio" name="status" value="public" class="radio-btn">
             <label for="public">Public</label>
+            <input id="private" type="radio" name="status" value="private" class="radio-btn">
+            <label for="private" class="entry">Private</label>
           </div>
         </div>
 
@@ -58,11 +60,13 @@
             <option value="RU">Russian</option>
             <option value="HI">Hindi</option>
           </select>
-
-          <div class="search-radio">
-            <input id="private" type="radio" name="status" value="private" class="radio-btn">
-            <label for="private" class="entry">Private</label>
-          </div>
+          <select name="SortBy" id="sortBy">
+            <option value="">Sort by</option>
+            <option value="mostLiked">Likes(most liked)</option>
+            <option value="leastLiked">Likes(least liked)</option>
+             <option value="newest">Date(newest)</option>
+            <option value="oldest">Date(oldest)</option>
+          </select>
         </div>
       </div>
     </div>
@@ -91,10 +95,15 @@
     <div class="one-dream">
       <div class="date">{{formatDate this.date "short"}}</div>
       <div class="date">{{this.languages}}</div>
+      <div class="likeStar">
+      {{#if (isPublic this)}}
+        <img src="/images/star-blue.png" alt="Likes">
+        {{this.likes}}
+      {{/if}}
+      </div>
       <a href="/dreams/{{this._id}}/details" class="dream-name">
         <h3>{{this.title}}</h3>
       </a>
-
       <div class="icons-edit">
       <a href="/dreams/{{this._id}}/edit"><img src="/images/edit.png" alt="Edit"></a>
 

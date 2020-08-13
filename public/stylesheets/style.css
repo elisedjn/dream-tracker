@@ -324,7 +324,7 @@ h1{
   background-color: rgba(255, 255, 255, 0.5);
   width: 80%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 30px;
   padding: 10px 20px;
   border-radius: 5px;
   box-shadow: 0 5px 15px #193047;
@@ -468,6 +468,19 @@ h1{
   align-items: baseline;
   height: 35px;
   text-align: center;
+}
+
+#sortBy {
+  background-color: #c7cbcd;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  height: 35px;
+  text-align: center;
+  width: 100%;
+  margin-left: 5px;
 
 }
 
@@ -775,4 +788,24 @@ h1{
 .starBtn img {
   width: 25px;
   height: 25px;
+}
+
+.likeStar{
+  margin-right: 5px;
+}
+
+.likeStar img {
+  width:20px;
+  height: 20px;
+}
+
+.detailsStar{
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.detailsStar img{
+  width:30px;
+  height: 30px;
 }

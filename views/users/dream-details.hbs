@@ -1,6 +1,9 @@
 <div id="record">
   {{> nav this }}
   <h1 class="titles">{{result.title}}</h1>
+  {{#if isPublic}}
+    <div class="detailsStar"><img src="/images/star-filled.png" alt="Likes"> {{result.likes}}</div> 
+  {{/if}}
   <div class="white-card">
     <p class="words">Listen to your Dream</p>
     <audio class="audio" src="{{result.audioUrl}}" type="audio/wav" controls ></audio>
