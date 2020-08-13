@@ -287,12 +287,30 @@ router.get("/dreamFlow/search", (req, res) => {
   if (languages !== undefined && languages !== "") {
     search.languages = languages;
   }
+
+  let sorting;
+
+  switch (req.query.SortBy) {
+    case "mostLiked":
+      sorting = {likes: -1}
+      break;
+    case "leastLiked":
+      sorting = {likes: 1}
+      break;
+    case "newest":
+      sorting = {date: -1}
+      break;
+    case "oldest":
+      sorting = {date: 1}
+      break;  
+  }
+
   if (likedDreams !== "" && likedDreams !== undefined) {
     UserModel.findById(req.session.loggedInUser._id).then((result) => {
       let dreamsLiked = result.likedDreams;
       delete search.likedDreams;
       search._id = {$in : dreamsLiked}
-      DreamModel.find(search)
+      DreamModel.find(search).sort(sorting)
       .then((result) => {
         // We delete the status and the ids from the search object to pass it to the view
         delete search.status;
@@ -308,7 +326,7 @@ router.get("/dreamFlow/search", (req, res) => {
       });
     });
   } else {
-    DreamModel.find(search)
+    DreamModel.find(search).sort(sorting)
       .then((result) => {
         // We delete the status from the search object to pass it to the view
         delete search.status;
