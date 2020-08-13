@@ -96,15 +96,28 @@ function createDownloadLink(blob) {
 
  
 let btnsArr = document.querySelectorAll(".category") 
+let catDiv = document.querySelector("#categoriesSelected");
+let catList = []
 btnsArr.forEach (btn => {
   btn.addEventListener("click", function(event) {
     btn.classList.toggle("active");
+    if (btn.classList.contains("active")){
+      catList.push(btn.value)
+      catDiv.innerText = catList.join(" / ")
+    } else {
+      let index = catList.indexOf(btn.value)
+      catList.splice(index,1)
+      catDiv.innerText = catList.join(" / ")
+    }
+    
+
 })  
 }) 
 
 let btnsLanguage = document.querySelectorAll(".language")
-  let oneIsActive = false
-  let activeBtn;
+let oneIsActive = false
+let activeBtn;
+let languageDiv = document.querySelector("#languageSelected")
 
 btnsLanguage.forEach (btn => {
   btn.addEventListener("click", function(event) {
@@ -112,10 +125,12 @@ btnsLanguage.forEach (btn => {
       btn.classList.add("languageActive");
       oneIsActive = true
       activeBtn = document.querySelector(".languageActive")
+      languageDiv.innerText = activeBtn.value
     } else {
       activeBtn.classList.remove("languageActive")
       btn.classList.add("languageActive");
       activeBtn = document.querySelector(".languageActive")
+      languageDiv.innerHTML= activeBtn.value
     }  
   })  
 }) 
