@@ -93,12 +93,8 @@
       <div class="date">{{this.languages}}</div>
       <div class="likeStar">
       {{#if (isPublic this)}}
-        {{#if (isLiked this)}}
-          <img src="/images/star-filled.png" alt="Likes">
-        {{else}}
-          <img src="/images/star-empty.png" alt="Likes">
-        {{/if}}
-      {{this.likes}}
+        <img src="/images/star-blue.png" alt="Likes">
+        {{this.likes}}
       {{/if}}
       </div>
       <a href="/dreams/{{this._id}}/details" class="dream-name">

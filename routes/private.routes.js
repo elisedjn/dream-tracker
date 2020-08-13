@@ -103,17 +103,11 @@ hbs.registerHelper("isPublic", (dream) => {
 
 // Private list of dreams
 router.get("/dreams", (req, res) => {
-  UserModel.findById(req.session.loggedInUser._id)
-    .then ((user) => {
-      hbs.registerHelper("isLiked", (dream) => {
-        return user.likedDreams.includes(dream._id)
-      })
-      DreamModel.find({ owner: req.session.loggedInUser._id })
-        .then((result) => {
-          res.render("users/dreams.hbs", { result });
-        })
-        .catch((err) => console.log(err));
-        })
+  DreamModel.find({ owner: req.session.loggedInUser._id })
+    .then((result) => {
+      res.render("users/dreams.hbs", { result });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.get("/dreams/search", (req, res) => {
