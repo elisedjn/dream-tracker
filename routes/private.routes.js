@@ -256,7 +256,7 @@ router.post("/dreamFlow/:id/:likes", (req, res) => {
 })
 
 router.get("/dreamFlow/search", (req, res) => {
-  let {date, categories, languages, likedDreams} = req.query
+  let {date, categories, languages} = req.query
   console.log(req.query)
   let search = {};
   search.status = "public"
@@ -269,11 +269,35 @@ router.get("/dreamFlow/search", (req, res) => {
   if(languages !== undefined && languages !== ""){
     search.languages = languages;
   }
-  if(likedDreams !== ""){
-    search.likedDreams = likedDreams;
+
+  let sorting;
+
+  switch (req.query.SortBy) {
+    case "mostLiked":
+      sorting = {likes: -1}
+      break;
+    case "leastLiked":
+      sorting = {likes: 1}
+      break;
+    case "newest":
+      sorting = {date: -1}
+      break;
+    case "oldest":
+      sorting = {date: 1}
+      break;  
   }
-  console.log(search)
-  DreamModel.find(search)
+ 
+/*
+  if (req.query.SortBy === "mostLiked"){
+    sorting = {likes: -1}
+  }
+  if (req.query.SortBy === "leastLiked") {
+    sorting = {likes: 1}
+  }
+*/
+
+  console.log(sorting)
+  DreamModel.find(search).sort(sorting)
   .then((result) => {
     // We delete the status from the search object to pass it to the view
     delete search.status

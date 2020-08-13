@@ -468,6 +468,19 @@ h1{
   align-items: baseline;
   height: 35px;
   text-align: center;
+}
+
+#sortBy {
+  background-color: #c7cbcd;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  height: 35px;
+  text-align: center;
+  width: 100%;
+  margin-left: 5px;
 
 }
 
