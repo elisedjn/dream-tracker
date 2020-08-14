@@ -35,7 +35,7 @@ Likes
 - GET /
   - renders the homepage
 
-- GET /auth/signup
+- GET /signup
   - renders the signup form
 - POST /auth/signup
   - redirects to /auth/login
@@ -44,7 +44,7 @@ Likes
     - email
     - password
 
-- GET /auth/login
+- GET /login
   - renders the login form
 - POST /auth/login
   - redirects to /profile/:id
@@ -52,43 +52,58 @@ Likes
     - email
     - password
 
-- GET /profile
+- GET /record
   - renders the dashboard with the create form
-- POST /profile
-  - redirects to /profile/:id/dreams
+- POST /record
+  - redirects to /record/dreams
   - body:
     - recording
     - title
     - categories
+    - languages
     - description
     - date
- 
-- GET /profile/dreams
-  - renders dreams.hbs with the list and the search and anchor tags 
-  - queries for the search
 
-- GET /profile/dreams/:dreamId/edit
+- POST /upload
+  - Post for the recording part (store it in cloudinary and in the db)
+
+- POST /recordNoVoice
+  - Post for a dream without recording part
+ 
+- GET /dreams
+  - renders dreams.hbs with the list and the search and anchor tags 
+
+- GET /dreams/search
+  - queries for search and sorting
+
+- GET /dreams/:id/edit
   - renders dream-edit.hbs with the edit form (same format as Dashboard)
-- POST /profile/dreams/:dreamId/edit
-  - redirects to /profile/:id/dreams
+- POST /dreams/:id/edit
+  - redirects to /dreams
   - body:
-    - recording
     - title
     - categories
+    - language
     - description
     - date
     - Status (public or private)
 
-- GET /profile/dreams/:dreamId (if the the user is looking at his own dream he will see edit and delete properties, else not)
+- GET /dreams/:id/details (if the the user is looking at his own dream he will see edit and delete properties, else not)
   - renders dream-details.hbs (simlilar format to Dashboard)
 
-- POST /profile/dreams/:dreamId/delete
-  - redirects to /profile/:id/dreams
+- POST dreams/:id/delete
+  - redirects to /dreams
   - body: (empty)
 
 - GET /dreamflow
   - renders dreamflow.hbs with the list and the search and anchor tags 
-  - queries for the search
+
+- POST /dreamFlow/:id/:likes
+  - adds a like counter to the dream
+
+- GET /dreamFlow/search
+  - functionallity to search among the liked dreams 
+  - queries for search and sorting
 
 - POST /auth/logout
   - body: (empty)
@@ -102,19 +117,24 @@ Likes
 	- name: {
     - type : string, 
     - required: true,
-    },
+  },
   - email:  {
     - type: String,
     - required: true,
-    - unique: true }
-    - passwordHash: {
-    type: String, 
-    required: true
-      },
-  - { timestamps: true},
-  
+    - unique: true 
+  },
+  - passwordHash: {
+    - type: String, 
+    - required: true
+  },
+  - likedDreams: [{
+    - type: Schema.Types.ObjectId,
+    - ref: 'dream'
+  }]
+  - { timestamps: true}, 
 }
-	
+-------------------------------------------------------------------
+
 - Dream: Schema {
 	- title: {
 	   - type: String,
@@ -123,23 +143,31 @@ Likes
 	- date: {
 	   - type: Date,
 	   - default: Date.now
-     }
+  },
 	- description : String,
 	- categories : [{
       - type : String
-	    - enum: [drama, action, romance, funny, fantastic, family, pets, fear, nightmare, adventure, childhood, XXX, food, job]
-      }]
+	    - enum: [drama, action, music, romance, funny, fantastic, family, pets, fear, nightmare, adventure, childhood, XXX, food, job]
+  }],
 	- status : {
 	  - type : String,
 	  - enum : [public, private]
-    }
-	- recording: {
-	  ??????????? MORE RESEARCH NEEDED
-	}
+    - default: "private"
+  },
+  - audioUrl: String,
   - owner: {
-        - type: mongoose.Schema.Types.ObjectId,
-        - ref: 'user'
-    }
+    - type: Schema.Types.ObjectId,
+    - ref: 'user'
+  },
+  - languages: [{
+    - type: String,
+    - enum: ["EN", "FR", "ES", "DE", "PL", "IT", "NL", "CA", "PT", "SV", "RU", "HI"]
+  }],
+  - likes: {
+    - type: Number,
+    - default: 0
+  }
+});
 
 
 ## Links
@@ -148,12 +176,12 @@ Likes
 
 [Link to your trello board](https://trello.com/b/VKahAsiL/dream-tracker) 
 
-### Git
+### Github
  
 [Repository Link](https://github.com/elisedjn/dream-tracker)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://dream-tracker.herokuapp.com)
 
 ### Slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1d1v_7uvAJEd1jpa5DPcGGqVJ8Io8Nbmjxe4alXpRPOg/edit?usp=sharing)
