@@ -234,7 +234,13 @@ router.post("/dreams/:id/edit", (req, res, next) => {
 // Delete Dream
 router.post("/dreams/:id/delete", (req, res) => {
   DreamModel.findByIdAndDelete(req.params.id)
-    .then(() => res.redirect("/dreams"))
+    .then((result) => {
+      let publicId = result.audioUrl.slice(-20)
+      cloudinary.uploader.destroy(publicId, {resource_type: "raw"})
+        .then((result) => {
+          res.redirect("/dreams")})
+        .catch((err) => console.log("error while destroying", err))
+      })
     .catch((err) => {
       console.log(err);
     });
